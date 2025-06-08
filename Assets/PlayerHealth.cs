@@ -5,6 +5,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 3;
     public int currentHealth;
+    public GameObject gameOverUI;
 
     public HealthBarController healthBar;
 
@@ -15,6 +16,10 @@ public class PlayerHealth : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.UpdateBar(currentHealth);
+        }
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(false);
         }
     }
 
@@ -38,14 +43,28 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    //void Die()
+    //{
+    //    Debug.Log("Jogador morreu! Reiniciando cena...");
+    //    Invoke(nameof(RestartScene), 0.5f); // Espera 0.5 segundo antes de reiniciar
+    //}
+
     void Die()
     {
-        Debug.Log("Jogador morreu! Reiniciando cena...");
-        Invoke(nameof(RestartScene), 0.5f); // Espera 0.5 segundo antes de reiniciar
+        Debug.Log("Jogador morreu! Mostrando tela de Game Over...");
+
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
+
+        Time.timeScale = 0f; // pausa o jogo
     }
 
-    void RestartScene()
+    public void RestartScene()
     {
+        Time.timeScale = 1f; // retoma o tempo
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
 }

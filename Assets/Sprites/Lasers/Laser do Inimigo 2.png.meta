@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Laser do Inimigo 2_0: 8128958144849164522
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

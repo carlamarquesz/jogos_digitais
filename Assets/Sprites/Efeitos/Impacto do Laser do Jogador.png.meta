@@ -497,7 +497,22 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Impacto do Laser do Jogador_0: 3826172279159857836
+      Impacto do Laser do Jogador_1: -562370853733510486
+      Impacto do Laser do Jogador_10: -9002621352475855302
+      Impacto do Laser do Jogador_11: -8110066272793321485
+      Impacto do Laser do Jogador_12: 8458095836134262011
+      Impacto do Laser do Jogador_13: 3461204280935283552
+      Impacto do Laser do Jogador_14: -7773540991793684240
+      Impacto do Laser do Jogador_2: 311450877338267617
+      Impacto do Laser do Jogador_3: -3260989853377166652
+      Impacto do Laser do Jogador_4: -422360547439110572
+      Impacto do Laser do Jogador_5: 1133178417376367107
+      Impacto do Laser do Jogador_6: -509994395828738394
+      Impacto do Laser do Jogador_7: -2802750279605318227
+      Impacto do Laser do Jogador_8: -4454806775562067090
+      Impacto do Laser do Jogador_9: -205637845168818309
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Laser do Jogador_0: 5720951283593071478
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

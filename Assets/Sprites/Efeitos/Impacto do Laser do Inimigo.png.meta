@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Impacto do Laser do Inimigo_0: 3454941648864954998
+      Impacto do Laser do Inimigo_1: -6345232175167846359
+      Impacto do Laser do Inimigo_2: -4851458348381255212
+      Impacto do Laser do Inimigo_3: 5502050764205490057
+      Impacto do Laser do Inimigo_4: 5993334361889967863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

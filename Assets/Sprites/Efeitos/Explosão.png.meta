@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "Explos\xE3o_0": 5520326820645485165
+      "Explos\xE3o_1": -2067370988531508026
+      "Explos\xE3o_2": 4995082268885998082
+      "Explos\xE3o_3": -5318759080726171467
+      "Explos\xE3o_4": 6081454263125851673
+      "Explos\xE3o_5": -3544988789498421675
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
