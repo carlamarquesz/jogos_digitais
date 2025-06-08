@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 3;
     public int currentHealth;
-    public GameObject gameOverUI;
 
+    [Header("Referências")]
+    public GameObject gameOverUI;
     public HealthBarController healthBar;
+    public TextMeshProUGUI textoGameOverTempo;
+    public TextMeshProUGUI textoGameOverPontos;
 
     void Start()
     {
@@ -17,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
         {
             healthBar.UpdateBar(currentHealth);
         }
+
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(false);
@@ -25,12 +30,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        Debug.Log("Ataque de " + amount);
-
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
-        Debug.Log("Jogador levou dano! Vida: " + currentHealth);
 
         if (healthBar != null)
         {
@@ -43,28 +44,40 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    //void Die()
-    //{
-    //    Debug.Log("Jogador morreu! Reiniciando cena...");
-    //    Invoke(nameof(RestartScene), 0.5f); // Espera 0.5 segundo antes de reiniciar
-    //}
-
     void Die()
     {
-        Debug.Log("Jogador morreu! Mostrando tela de Game Over...");
+        Time.timeScale = 0f;
+
+        // Finaliza o jogo no GameManager
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.FimDeJogo();
+
+            // Atualiza texto do tempo
+            if (textoGameOverTempo != null)
+            {
+                float tempoFinal = GameManager.instance.tempo;
+                int min = Mathf.FloorToInt(tempoFinal / 60f);
+                int seg = Mathf.FloorToInt(tempoFinal % 60f);
+                textoGameOverTempo.text = $"Tempo: {min:D2}:{seg:D2}";
+            }
+
+            // Atualiza texto de pontos
+            if (textoGameOverPontos != null)
+            {
+                textoGameOverPontos.text = $"Pontos: {GameManager.instance.pontos:D3}";
+            }
+        }
 
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
         }
-
-        Time.timeScale = 0f; // pausa o jogo
     }
 
     public void RestartScene()
     {
-        Time.timeScale = 1f; // retoma o tempo
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }
