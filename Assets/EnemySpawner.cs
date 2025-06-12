@@ -15,6 +15,9 @@ public class EnemySpawner : MonoBehaviour
     [Tooltip("Tempo em segundos até acelerar")]
     public float timeToSpeedUp = 30f;
 
+    [Tooltip("Número máximo de inimigos ativos ao mesmo tempo")]
+    public int maxEnemies = 10;
+
     void Start()
     {
         StartCoroutine(SpawnRoutine());
@@ -28,8 +31,10 @@ public class EnemySpawner : MonoBehaviour
         {
             float currentInterval = (timer < timeToSpeedUp) ? initialInterval : fasterInterval;
 
-            SpawnEnemy();
-
+            if (CountActiveEnemies() < maxEnemies)
+            {
+                SpawnEnemy();
+            }
             yield return new WaitForSeconds(currentInterval);
             timer += currentInterval;
         }
@@ -48,5 +53,10 @@ public class EnemySpawner : MonoBehaviour
         {
             controller.player = GameObject.FindWithTag("Player").transform;
         }
+    }
+
+    int CountActiveEnemies()
+    {
+        return GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 }

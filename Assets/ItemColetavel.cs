@@ -1,43 +1,51 @@
 using UnityEngine;
-
+public enum TipoItem
+{
+    Ponto,
+    Energia
+}
 public class ItemColetavel : MonoBehaviour
 {
+    public TipoItem tipoItem = TipoItem.Ponto; // Escolhido no Inspector
     public GameObject explosionEffect;
-    public Spawner spawner; // Pode ser atribuído manualmente OU via código
+    public Spawner spawner;
 
     void Start()
     {
-        Invoke(nameof(DestruirPorTempo), 3f); // 3s para sumir se não for tocado
+        Invoke(nameof(DestruirPorTempo), 3f);
 
-        // Segurança: se spawner for null, tenta encontrar um na cena
         if (spawner == null)
-        {
             spawner = FindObjectOfType<Spawner>();
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+
+        // Efeito visual
+        if (explosionEffect != null)
+            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+        // Ação conforme o tipo
+        switch (tipoItem)
         {
-            GameManager.instance.AddPoint();
+            case TipoItem.Ponto:
+                GameManager.instance.AddPoint();
+                break;
 
-            if (explosionEffect != null)
-            {
-                Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            }
-
-            CancelInvoke(); // Evita destruir duas vezes
-            Destroy(gameObject);
-
-            // Chama novo spawn após coleta
-            spawner?.ChamarProximoSpawn();
+            case TipoItem.Energia:
+                GameManager.instance.ColetarEnergia();
+                break;
         }
+
+        CancelInvoke();
+        Destroy(gameObject);
+        spawner?.ChamarProximoSpawn();
     }
 
     void DestruirPorTempo()
     {
         Destroy(gameObject);
-        spawner?.ChamarProximoSpawn(); // Chama novo spawn mesmo que não tenha sido coletado
+        spawner?.ChamarProximoSpawn();
     }
 }
