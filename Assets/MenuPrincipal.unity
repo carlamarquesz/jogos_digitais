@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "> INIMIGOS:\r\n  - Evite contato. Dano letal em m\xFAltiplas colis\xF5es.\r\n\r\n>
+  m_text: "> INIMIGOS:\r\n  - Evite contato. Dano letal em colis\xF5es.\r\n\r\n>
     OBJETIVO:\r\n  - Colete o m\xE1ximo de particulas poss\xEDvel.\r\n  - Fa\xE7a
     isso no menor tempo.\r\n  - Supere seus registros anteriores."
   m_isRightToLeft: 0
