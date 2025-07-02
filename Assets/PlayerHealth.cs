@@ -46,23 +46,17 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Time.timeScale = 0f;
-
-        // Finaliza o jogo no GameManager
+        Time.timeScale = 0f; 
         if (GameManager.instance != null)
         {
-            GameManager.instance.FimDeJogo();
-
-            // Atualiza texto do tempo
+            GameManager.instance.FimDeJogo(); 
             if (textoGameOverTempo != null)
             {
                 float tempoFinal = GameManager.instance.tempo;
                 int min = Mathf.FloorToInt(tempoFinal / 60f);
                 int seg = Mathf.FloorToInt(tempoFinal % 60f);
                 textoGameOverTempo.text = $"Tempo: {min:D2}:{seg:D2}";
-            }
-
-            // Atualiza texto de pontos
+            } 
             if (textoGameOverPontos != null)
             {
                 textoGameOverPontos.text = $"Pontos: {GameManager.instance.pontos:D3}";

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public int energiaColetada = 0;
     public int boostCargas = 0;
     public int energiaPorCarga = 3;
-    public TextMeshProUGUI textoEnergia; // Referência opcional à UI de boost
+    public TextMeshProUGUI textoEnergia; 
 
     [Header("Tempo de Boost")]
     public float tempoMaximoPorCarga = 8f;
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Boost encerrado. Sistema reiniciado.");
             }
 
-            AtualizarTextoEnergia(); // <- isso mantém a UI em tempo real
+            AtualizarTextoEnergia(); 
         }
 
 
@@ -84,25 +84,26 @@ public class GameManager : MonoBehaviour
     public void ColetarEnergia()
     {
         // Se já tem boost e energia cheia, não deve coletar
+        // Só coleta se ainda estiver abaixo do limite
+        // Se atingiu o máximo, carrega boost (mas mantém 3/3 visível até o boost ser usado)
+
         if (boostCargas >= 1 && energiaColetada >= energiaPorCarga)
         {
             Debug.Log("Coleta bloqueada: boost ativo e energia cheia.");
             return;
         }
 
-        // Só coleta se ainda estiver abaixo do limite
         if (energiaColetada < energiaPorCarga)
         {
             energiaColetada++;
         }
 
-        // Se atingiu o máximo, carrega boost (mas mantém 3/3 visível até o boost ser usado)
         if (energiaColetada == energiaPorCarga && boostCargas == 0)
         {
             boostCargas = 1;
         }
 
-        AtualizarTextoEnergia(); // Chama depois de todo o processo
+        AtualizarTextoEnergia();  
     }
 
 
@@ -136,8 +137,7 @@ public class GameManager : MonoBehaviour
             boostTexto = $"Boost: {restante:F1}s";
         }
         else if (energiaColetada == energiaPorCarga && boostCargas > 0)
-        {
-            // Boost pronto, mas ainda não usado
+        { 
             boostTexto = $"Boost: {tempoMaximoPorCarga:F1}s";
         }
         else

@@ -29,16 +29,11 @@ public class PlayerRotationInput : MonoBehaviour
     }
 
     void Update()
-    {
-        // Converte posição do mouse na tela para posição no mundo
+    { 
         Vector3 mouseWorldPosition = cam.ScreenToWorldPoint(mouseScreenPosition);
-        mouseWorldPosition.z = 0f;
-
-        // Calcula direção e ângulo
+        mouseWorldPosition.z = 0f; 
         Vector2 direction = (mouseWorldPosition - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        // Aplica rotação no eixo Z
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; 
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }

@@ -50,6 +50,6 @@ public class MenuPrincipal : MonoBehaviour
     public void ZerarRanking()
     {
         RankingManager.ZerarRanking();
-        MostrarRanking(); // Atualiza visual
+        MostrarRanking(); 
     }
 }

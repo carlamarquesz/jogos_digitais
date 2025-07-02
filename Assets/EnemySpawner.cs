@@ -43,14 +43,9 @@ public class EnemySpawner : MonoBehaviour
     }
 
     void SpawnEnemy()
-    {
-        // Decide lateral
-        bool spawnRight = Random.value > 0.5f;
-
-        // Converte um valor fixo de X (fora da tela) e Y aleatório dentro de faixa controlada
-        float yRandom = Random.Range(minY, maxY);
-
-        // Obtém posição da câmera (usando Viewport ou posição absoluta)
+    { 
+        bool spawnRight = Random.value > 0.5f; 
+        float yRandom = Random.Range(minY, maxY); 
         Vector3 spawnPos = spawnRight
             ? new Vector3(Camera.main.transform.position.x + 10f, yRandom, 0f)
             : new Vector3(Camera.main.transform.position.x - 10f, yRandom, 0f);

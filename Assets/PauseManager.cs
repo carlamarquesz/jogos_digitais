@@ -7,24 +7,21 @@ public class PauseManager : MonoBehaviour
     public GameObject pauseUI;
     private bool isPaused = false;
 
-    private PlayerControls inputActions; // Usando o nome correto do input actions
-
+    private PlayerControls inputActions;  
     void Awake()
     {
-        inputActions = new PlayerControls(); // Instancia o mapa de controles
-
-        // Escuta a ação de pause
+        inputActions = new PlayerControls();   
         inputActions.Player.Pause.performed += ctx => TogglePause();
     }
 
     void OnEnable()
     {
-        inputActions.Enable(); // Habilita ações quando o objeto é ativado
+        inputActions.Enable(); 
     }
 
     void OnDisable()
     {
-        inputActions.Disable(); // Desabilita ações quando o objeto é desativado
+        inputActions.Disable(); 
     }
 
     void TogglePause()
@@ -56,6 +53,6 @@ public class PauseManager : MonoBehaviour
     public void ExitToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MenuPrincipal"); // Substitua pelo nome da sua cena
+        SceneManager.LoadScene("MenuPrincipal");
     }
 }

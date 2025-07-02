@@ -16,7 +16,7 @@ public class PlayerProjectile : MonoBehaviour
 
             }
 
-            Destroy(gameObject); // Destroi o projétil
+            Destroy(gameObject); 
         }
 
     }

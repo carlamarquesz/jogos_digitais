@@ -19,8 +19,7 @@ public static class RankingManager
             float tempoSalvo = float.Parse(partes[1]);
 
             if (pontos > pontosSalvos || (pontos == pontosSalvos && tempo < tempoSalvo))
-            {
-                // Move entradas para baixo
+            { 
                 for (int j = 9; j > i; j--)
                 {
                     string anterior = PlayerPrefs.GetString("Top" + (j - 1), "");

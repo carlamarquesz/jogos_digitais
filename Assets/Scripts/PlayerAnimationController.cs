@@ -52,28 +52,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector2 input = controls.Player.Move.ReadValue<Vector2>();
-
-        // Verifica se está se movendo
+        Vector2 input = controls.Player.Move.ReadValue<Vector2>(); 
         bool isWalking = input.magnitude > 0.05f;
-        animator.SetBool("isMoving", isWalking);
-
-        // Define valores dos parâmetros de direção
+        animator.SetBool("isMoving", isWalking); 
         animator.SetFloat("MoveX", input.x);
-        animator.SetFloat("MoveY", input.y);
-
-        // Define velocidade do movimento
-        Vector2 moveDirection = input.normalized * moveSpeed;
-
-        // Aplica boost se disponível
+        animator.SetFloat("MoveY", input.y); 
+        Vector2 moveDirection = input.normalized * moveSpeed; 
         if (isBoosting && input != Vector2.zero && GameManager.instance.TentarUsarBoost())
         {
             moveDirection += input.normalized * jumpForce;
         }
 
-        rb.linearVelocity = moveDirection; // Corrigido para `rb.velocity` (mais comum que `linearVelocity`)
-
-        // Controla partículas do boost
+        rb.linearVelocity = moveDirection; 
         var main = rocketFlame.main;
         float targetLifetime = (input == Vector2.zero && !isBoosting) ? 1f : 2f;
         if (main.startLifetime.constant != targetLifetime)
@@ -81,9 +71,7 @@ public class PlayerMovement : MonoBehaviour
             main.startLifetime = targetLifetime;
             rocketFlame.Clear();
             rocketFlame.Play();
-        }
-
-        // Inverte sprite baseado na direção horizontal
+        } 
         if (input.x > 0.1f)
         {
             transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // Direita (normal)

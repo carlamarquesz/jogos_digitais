@@ -6,7 +6,7 @@ public enum TipoItem
 }
 public class ItemColetavel : MonoBehaviour
 {
-    public TipoItem tipoItem = TipoItem.Ponto; // Escolhido no Inspector
+    public TipoItem tipoItem = TipoItem.Ponto;
     public GameObject explosionEffect;
     public Spawner spawner;
 
@@ -20,13 +20,9 @@ public class ItemColetavel : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
-
-        // Efeito visual
+        if (!other.CompareTag("Player")) return; 
         if (explosionEffect != null)
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
-
-        // Ação conforme o tipo
+            Instantiate(explosionEffect, transform.position, Quaternion.identity); 
         switch (tipoItem)
         {
             case TipoItem.Ponto:
