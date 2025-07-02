@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public float shootIntervalMin = 1f;
     public float shootIntervalMax = 3f;
     public float projectileSpeed = 5f;
+    private float direction = -1f;
 
     private float shootTimer;
 
@@ -59,5 +60,15 @@ public class EnemyController : MonoBehaviour
                 playerHealth.TakeDamage(playerHealth.currentHealth); // Tira toda a vida
             }
         }
+    }
+
+    public void SetDirection(float dir)
+    {
+        direction = dir;
+         
+        if (dir < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+        else
+            transform.localScale = new Vector3(1, 1, 1);
     }
 }

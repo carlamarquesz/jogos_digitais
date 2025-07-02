@@ -17,6 +17,8 @@ public class EnemySpawner : MonoBehaviour
 
     [Tooltip("Número máximo de inimigos ativos ao mesmo tempo")]
     public int maxEnemies = 10;
+    [SerializeField] private float minY = -2f;
+    [SerializeField] private float maxY = 2f;
 
     void Start()
     {
@@ -42,18 +44,28 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Vector3 viewportPos = new Vector3(Random.Range(0.5f, 1f), Random.value, 10f);
-        Vector3 worldPos = Camera.main.ViewportToWorldPoint(viewportPos);
-        worldPos.z = 0f;
+        // Decide lateral
+        bool spawnRight = Random.value > 0.5f;
 
-        GameObject enemy = Instantiate(enemyPrefab, worldPos, Quaternion.identity);
+        // Converte um valor fixo de X (fora da tela) e Y aleatório dentro de faixa controlada
+        float yRandom = Random.Range(minY, maxY);
+
+        // Obtém posição da câmera (usando Viewport ou posição absoluta)
+        Vector3 spawnPos = spawnRight
+            ? new Vector3(Camera.main.transform.position.x + 10f, yRandom, 0f)
+            : new Vector3(Camera.main.transform.position.x - 10f, yRandom, 0f);
+
+        GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
 
         EnemyController controller = enemy.GetComponent<EnemyController>();
         if (controller != null && GameObject.FindWithTag("Player") != null)
         {
             controller.player = GameObject.FindWithTag("Player").transform;
+            controller.SetDirection(spawnRight ? -1f : 1f);
         }
     }
+
+
 
     int CountActiveEnemies()
     {

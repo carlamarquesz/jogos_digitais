@@ -1,25 +1,25 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 2f; 
-     
+    public float jumpForce = 2f;
+
     private Animator animator;
     private Rigidbody2D rb;
     private PlayerControls controls;
     public ParticleSystem rocketFlame;
 
-    public GameObject projectilePrefab;     // Prefab do projétil
-    public Transform shootPoint;            // Ponto de onde o projétil vai sair
-    public Transform enemy;                // Referência ao inimigo
+    public GameObject projectilePrefab;
+    public Transform shootPoint;
+    public Transform enemy;
     private bool isBoosting = false;
 
     public float projectileSpeed = 5f;
-    public int energyPiecesToRecharge = 3; // Quantidade necessária para recarregar
-    private int energyCollected = 0;       // Quantas peças foram coletadas até agora
-
+    public int energyPiecesToRecharge = 3;
+    private int energyCollected = 0;
 
     private void Awake()
     {
@@ -31,22 +31,16 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         controls.Enable();
-        controls.Player.Jump.started += ctx =>
-        {
-            isBoosting = true;
-        };
 
+        controls.Player.Jump.started += ctx => { isBoosting = true; };
         controls.Player.Jump.canceled += ctx =>
         {
             isBoosting = false;
-            GameManager.instance.PararBoost(); // <- Notifica que o boost parou
+            GameManager.instance.PararBoost();
         };
 
         controls.Player.Shoot.performed += ctx => Shoot();
-
-
     }
-
 
     private void OnDisable()
     {
@@ -56,74 +50,77 @@ public class PlayerMovement : MonoBehaviour
         controls.Disable();
     }
 
-
     private void Update()
     {
         Vector2 input = controls.Player.Move.ReadValue<Vector2>();
 
-        // Direção normal de movimento
+        // Verifica se está se movendo
+        bool isWalking = input.magnitude > 0.05f;
+        animator.SetBool("isMoving", isWalking);
+
+        // Define valores dos parâmetros de direção
+        animator.SetFloat("MoveX", input.x);
+        animator.SetFloat("MoveY", input.y);
+
+        // Define velocidade do movimento
         Vector2 moveDirection = input.normalized * moveSpeed;
 
-        // Aplique o impulso se botão está pressionado, há input E tem boost disponível
+        // Aplica boost se disponível
         if (isBoosting && input != Vector2.zero && GameManager.instance.TentarUsarBoost())
         {
             moveDirection += input.normalized * jumpForce;
         }
 
-        rb.linearVelocity = moveDirection;
+        rb.linearVelocity = moveDirection; // Corrigido para `rb.velocity` (mais comum que `linearVelocity`)
 
-        // Partículas (opcionalmente pode ativar só quando isBoosting for true)
+        // Controla partículas do boost
         var main = rocketFlame.main;
-        if (input == Vector2.zero && !isBoosting)
+        float targetLifetime = (input == Vector2.zero && !isBoosting) ? 1f : 2f;
+        if (main.startLifetime.constant != targetLifetime)
         {
-            if (main.startLifetime.constant != 1f)
-            {
-                main.startLifetime = 1f;
-                rocketFlame.Clear();
-                rocketFlame.Play();
-            }
-        }
-        else
-        {
-            if (main.startLifetime.constant != 2f)
-            {
-                main.startLifetime = 2f;
-                rocketFlame.Clear();
-                rocketFlame.Play();
-            }
+            main.startLifetime = targetLifetime;
+            rocketFlame.Clear();
+            rocketFlame.Play();
         }
 
-        // Flip horizontal da nave
-        if (input.x > 0)
-            transform.localScale = new Vector3(0.5f, 0.5f, 1);
-        else if (input.x < 0)
-            transform.localScale = new Vector3(-0.5f, 0.5f, 1);
+        // Inverte sprite baseado na direção horizontal
+        if (input.x > 0.1f)
+        {
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // Direita (normal)
+        }
+        else if (input.x < -0.1f)
+        {
+            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f); // Esquerda (espelhado)
+        }
+
     }
-
-     
 
 
     private void Shoot()
     {
+
+        animator.Play("dispararPoder", 0, 0f);
         GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        //rb.linearVelocity = Vector2.up * projectileSpeed;
+        float direction = Mathf.Sign(transform.localScale.x);
+        rb.linearVelocity = new Vector2(direction * projectileSpeed, 0f); // move na horizontal
 
-        rb.linearVelocity = Vector2.up * projectileSpeed;
     }
 
-
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("Enemy hit!");
-            // Aqui você pode chamar o método TakeDamage do jogador, se quiser
         }
-        //if (other.CompareTag("EnergyPiece"))
-        //{
-        //    GameManager.instance.ColetarEnergia();
-        //    Destroy(other.gameObject);
-        //}
-
-    } 
+        if (other.CompareTag("portaSala"))
+        {
+            SceneManager.LoadScene("SalaJantar");
+        }
+        if (other.CompareTag("portaHall"))
+        {
+            SceneManager.LoadScene("Game");
+        }
+    }
 }

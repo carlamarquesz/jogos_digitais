@@ -11,7 +11,7 @@ public class MenuPrincipal : MonoBehaviour
 
     public void IniciarJogo()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("1Parte_Atividade");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Cutscene");
     }
 
     public void SairDoJogo()
