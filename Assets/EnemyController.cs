@@ -3,7 +3,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public GameObject projectilePrefab;     // Prefab do projétil
-    public Transform shootPoint;            // Ponto de onde o projétil vai sair
+    public Transform shootPoint;
+    public Transform center;    // Ponto de onde o projétil vai sair
     public Transform player;               
 
     public float moveSpeed = 1f;
@@ -27,7 +28,7 @@ public class EnemyController : MonoBehaviour
             // Rotaciona o inimigo para olhar para o jogador
             Vector2 direction = (player.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle); 
+            center.rotation = Quaternion.Euler(0f, 0f, angle); 
             transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
         }
 
@@ -43,7 +44,7 @@ public class EnemyController : MonoBehaviour
     void Shoot()
     {
         // Cria o projétil com a mesma rotação do ponto de tiro
-        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.linearVelocity = shootPoint.right * projectileSpeed;
     }
