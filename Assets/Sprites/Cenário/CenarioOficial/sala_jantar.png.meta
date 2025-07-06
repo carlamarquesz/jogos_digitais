@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sala_jantar_0: -1897604753008886015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
