@@ -4,6 +4,8 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {   
+    public HUD_Controller hud;
+
     [HideInInspector]
     public int maxHealth = 5;
     [HideInInspector]
