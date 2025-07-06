@@ -583,12 +583,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeSprites:
-  - {fileID: -556663896244417668, guid: 383e3e743399c894ea17e5bd9ba6a424, type: 3}
-  - {fileID: -878414262, guid: 8b3611e770510e04a9730ef7a8164718, type: 3}
-  - {fileID: 1291302272, guid: 8b3611e770510e04a9730ef7a8164718, type: 3}
-  - {fileID: 1312431802, guid: 8b3611e770510e04a9730ef7a8164718, type: 3}
-  - {fileID: -1370990690, guid: 8b3611e770510e04a9730ef7a8164718, type: 3}
-  - {fileID: 1083713258, guid: 8b3611e770510e04a9730ef7a8164718, type: 3}
+  - {fileID: 4182832997566731834, guid: 288bcb37609ff3e868a4291f2c9bcecc, type: 3}
+  - {fileID: -770707073673447930, guid: 570720a5af5448b26baf72849d87ca1e, type: 3}
+  - {fileID: 2202058476440412442, guid: 14d3468a22616c1a6aab346d74a7ba45, type: 3}
+  - {fileID: -2570997389834082192, guid: 6abccadd731aa4c4296b517853d93688, type: 3}
+  - {fileID: -2536277818022624134, guid: 46689233f2ad37a259a5af00a85e4e49, type: 3}
+  - {fileID: 7132275657898591130, guid: 4db418be926579f5cb18b6d8e2de01e3, type: 3}
   barRenderer: {fileID: 396629834}
 --- !u!212 &396629834
 SpriteRenderer:
@@ -634,7 +634,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 1083713258, guid: 8b3611e770510e04a9730ef7a8164718, type: 3}
+  m_Sprite: {fileID: 7132275657898591130, guid: 4db418be926579f5cb18b6d8e2de01e3,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -654,7 +655,7 @@ Transform:
   m_GameObject: {fileID: 396629832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.248, y: 4.307, z: 0}
+  m_LocalPosition: {x: -7.11, y: 3.48, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4087,9 +4088,19 @@ PrefabInstance:
       objectReference: {fileID: 396629833}
     - target: {fileID: 6580406202932777677, guid: c4b7ccfcfad33d24aa007db5cde6286f,
         type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580406202932777677, guid: c4b7ccfcfad33d24aa007db5cde6286f,
+        type: 3}
       propertyPath: gameOverUI
       value: 
       objectReference: {fileID: 24606677}
+    - target: {fileID: 6580406202932777677, guid: c4b7ccfcfad33d24aa007db5cde6286f,
+        type: 3}
+      propertyPath: currentHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6580406202932777677, guid: c4b7ccfcfad33d24aa007db5cde6286f,
         type: 3}
       propertyPath: textoGameOverTempo

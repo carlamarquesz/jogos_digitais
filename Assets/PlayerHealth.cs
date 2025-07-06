@@ -3,8 +3,10 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerHealth : MonoBehaviour
-{
-    public int maxHealth = 3;
+{   
+    [HideInInspector]
+    public int maxHealth = 5;
+    [HideInInspector]
     public int currentHealth;
 
     [Header("Referências")]
@@ -13,10 +15,20 @@ public class PlayerHealth : MonoBehaviour
     public TextMeshProUGUI textoGameOverTempo;
     public TextMeshProUGUI textoGameOverPontos;
 
+    public static int saveHealth = -1;
+
+    void Awake()
+    {
+        if(saveHealth < 0)
+        {
+            PlayerHealth.saveHealth = maxHealth;
+        }else
+        {
+            currentHealth = PlayerHealth.saveHealth;
+        }
+    }
     void Start()
     {
-        currentHealth = maxHealth;
-
         if (healthBar != null)
         {
             healthBar.UpdateBar(currentHealth);
@@ -31,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        saveHealth = currentHealth;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         if (healthBar != null)
