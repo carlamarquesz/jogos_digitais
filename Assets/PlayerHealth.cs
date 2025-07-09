@@ -4,12 +4,13 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {   
+    public HUD_Controller hud;
     [HideInInspector]
-    public int maxHealth = 5;
+    public int maxHealth;
     [HideInInspector]
     public int currentHealth;
 
-    [Header("Referências")]
+    [Header("Referï¿½ncias")]
     public GameObject gameOverUI;
     public HealthBarController healthBar;
     public TextMeshProUGUI textoGameOverTempo;
@@ -19,21 +20,19 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake()
     {
-        if(saveHealth < 0)
+        if (saveHealth < 0)
         {
+            hud.SetMaxHealth(maxHealth);
             PlayerHealth.saveHealth = maxHealth;
-        }else
+        }
+        else
         {
             currentHealth = PlayerHealth.saveHealth;
+            hud.SetHealth(currentHealth);
         }
     }
     void Start()
     {
-        if (healthBar != null)
-        {
-            healthBar.UpdateBar(currentHealth);
-        }
-
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(false);
@@ -46,10 +45,7 @@ public class PlayerHealth : MonoBehaviour
         saveHealth = currentHealth;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        if (healthBar != null)
-        {
-            healthBar.UpdateBar(currentHealth);
-        }
+        hud.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
