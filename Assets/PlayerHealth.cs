@@ -6,9 +6,9 @@ public class PlayerHealth : MonoBehaviour
 {   
     public HUD_Controller hud;
     [HideInInspector]
-    private int maxHealth;
+    public int maxHealth;
     [HideInInspector]
-    private int currentHealth;
+    public int currentHealth;
 
     [Header("Refer�ncias")]
     public GameObject gameOverUI;
@@ -33,7 +33,6 @@ public class PlayerHealth : MonoBehaviour
     }
     void Start()
     {
-        hud.SetMaxHealth(maxHealth);
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(false);
