@@ -9,6 +9,9 @@ TagManager:
   - EnergyPiece
   - portaSala
   - portaHall
+  - portal-principal
+  - carta
+  - comoda
   layers:
   - Default
   - TransparentFX

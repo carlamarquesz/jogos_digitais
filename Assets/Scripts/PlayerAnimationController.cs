@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +23,21 @@ public class PlayerMovement : MonoBehaviour
     public float projectileSpeed = 5f;
     public int energyPiecesToRecharge = 3;
     private int energyCollected = 0;
+
+    public GameObject canvasAvisoPortao;
+    public Button botaoFecharAviso;
+
+    public GameObject canvasCarta;
+    public Button botaoFecharCarta;
+
+    public Image encontrouItemImage;       // A imagem que dá fade
+    public CanvasGroup encontrouCanvasGroup; // Requer componente CanvasGroup no objeto
+    public GameObject canvasDialogo;
+    public TMP_Text dialogoTexto;
+    public Button botaoFecharDialogo;
+
+    public ComodaPuzzle puzzle; // arraste no Inspector
+
 
     private void Awake()
     {
@@ -96,6 +114,64 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void MostrarAvisoPortao()
+    {
+        Time.timeScale = 0f;
+        canvasAvisoPortao.SetActive(true);
+        botaoFecharAviso.onClick.RemoveAllListeners();
+        botaoFecharAviso.onClick.AddListener(FecharAvisoPortao);
+    }
+
+    private void FecharAvisoPortao()
+    {
+        canvasAvisoPortao.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    private void MostrarCarta()
+    {
+        Time.timeScale = 0f;
+        canvasCarta.SetActive(true);
+
+        botaoFecharCarta.onClick.RemoveAllListeners();
+        botaoFecharCarta.onClick.AddListener(FecharCarta);
+    }
+
+    private void FecharCarta()
+    {
+        canvasCarta.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    IEnumerator RevelarItemComFade()
+    {
+        Time.timeScale = 0f;
+
+        encontrouItemImage.gameObject.SetActive(true);
+        encontrouCanvasGroup.alpha = 0f;
+
+        
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.unscaledDeltaTime;
+            encontrouCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t);
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(5f); 
+
+        encontrouItemImage.gameObject.SetActive(false);
+
+        canvasDialogo.SetActive(true);
+        dialogoTexto.text = "Você encontrou um item de força: O anel mágico.";
+
+        botaoFecharDialogo.onClick.RemoveAllListeners();
+        botaoFecharDialogo.onClick.AddListener(() =>
+        {
+            canvasDialogo.SetActive(false);
+            Time.timeScale = 1f;
+        });
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -109,6 +185,26 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("portaHall"))
         {
             SceneManager.LoadScene("Game");
+        }
+        if (other.CompareTag("portal-principal"))
+        {
+            MostrarAvisoPortao();
+        }
+        if (other.CompareTag("carta"))
+        {
+            MostrarCarta(); 
+        }
+        if (other.CompareTag("comoda"))
+        {
+            if (ComodaPuzzle.comodaDestravada)
+            {
+                StartCoroutine(RevelarItemComFade());
+            }
+            else
+            {
+                ComodaPuzzle.instance.MostrarMensagem("A cômoda está trancada. Resolva o enigma primeiro.");
+                Debug.Log("A cômoda está trancada. Resolva o enigma primeiro.");
+            }
         }
     }
 }
