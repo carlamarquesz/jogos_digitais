@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      perdendo-poder_0: -1733041527055859843
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
