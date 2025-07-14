@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SalaJantar.unity
     guid: f4565046a6ae2594bbefd6a632df622b
+  - enabled: 1
+    path: Assets/Salateste.unity
+    guid: e113040a9b2682e4fa875ec8f9db0ad4
+  - enabled: 1
+    path: Assets/PUZZLE1.unity
+    guid: 2da65f55e54735345906d5c9b710e8d0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 5e716bb9195b9eb49a2ccb4c51691dc6,
       type: 3}
