@@ -10,12 +10,14 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 2f;
 
+    public MagiaScript magiaScript; // Refer√™ncia no inspector para o controlador de magias
+
     private Animator animator;
     private Rigidbody2D rb;
     private PlayerControls controls;
     public ParticleSystem rocketFlame;
+    private bool avisoMostrado = false; // <-- REFERENCIA PARA A CENA DO CHEF√ÉO
 
-    public GameObject projectilePrefab;
     public Transform shootPoint;
     public Transform enemy;
     private bool isBoosting = false;
@@ -30,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject canvasCarta;
     public Button botaoFecharCarta;
 
-    public Image encontrouItemImage;       // A imagem que d· fade
+    public Image encontrouItemImage;       // A imagem que d√° fade
     public CanvasGroup encontrouCanvasGroup; // Requer componente CanvasGroup no objeto
     public GameObject canvasDialogo;
     public TMP_Text dialogoTexto;
@@ -38,6 +40,18 @@ public class PlayerMovement : MonoBehaviour
 
     public ComodaPuzzle puzzle; // arraste no Inspector
 
+    // Propriedade para pegar a magia atual (prefab) do MagiaScript
+    private GameObject CurrentMagiaPrefab
+    {
+        get
+        {
+            if (magiaScript != null && magiaScript.magias.Length > 0)
+            {
+                return magiaScript.magias[magiaScript.currentMagiaIndex];
+            }
+            return null;
+        }
+    }
 
     private void Awake()
     {
@@ -70,18 +84,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector2 input = controls.Player.Move.ReadValue<Vector2>(); 
+        Vector2 input = controls.Player.Move.ReadValue<Vector2>();
         bool isWalking = input.magnitude > 0.05f;
-        animator.SetBool("isMoving", isWalking); 
+        animator.SetBool("isMoving", isWalking);
         animator.SetFloat("MoveX", input.x);
-        animator.SetFloat("MoveY", input.y); 
-        Vector2 moveDirection = input.normalized * moveSpeed; 
+        animator.SetFloat("MoveY", input.y);
+        Vector2 moveDirection = input.normalized * moveSpeed;
         if (isBoosting && input != Vector2.zero && GameManager.instance.TentarUsarBoost())
         {
             moveDirection += input.normalized * jumpForce;
         }
 
-        rb.linearVelocity = moveDirection; 
+        rb.linearVelocity = moveDirection;
         var main = rocketFlame.main;
         float targetLifetime = (input == Vector2.zero && !isBoosting) ? 1f : 2f;
         if (main.startLifetime.constant != targetLifetime)
@@ -89,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
             main.startLifetime = targetLifetime;
             rocketFlame.Clear();
             rocketFlame.Play();
-        } 
+        }
         if (input.x > 0.1f)
         {
             transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // Direita (normal)
@@ -98,21 +112,44 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f); // Esquerda (espelhado)
         }
-
     }
-
 
     private void Shoot()
+{
+    animator.Play("dispararPoder", 0, 0f);
+
+    GameObject prefab = CurrentMagiaPrefab;
+    if (prefab == null)
     {
-
-        animator.Play("dispararPoder", 0, 0f);
-        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        //rb.linearVelocity = Vector2.up * projectileSpeed;
-        float direction = Mathf.Sign(transform.localScale.x);
-        rb.linearVelocity = new Vector2(direction * projectileSpeed, 0f); // move na horizontal
-
+        Debug.LogWarning("Nenhuma magia selecionada para disparar.");
+        return;
     }
+
+    GameObject proj = Instantiate(prefab, shootPoint.position, shootPoint.rotation);
+
+    Magia magia = proj.GetComponent<Magia>();
+    if (magia != null)
+    {
+        // Aqui ajustamos a dire√ß√£o conforme o lado do personagem
+        float direction = transform.localScale.x > 0 ? 1f : -1f;
+        magia.direcao = new Vector2(direction, 0f); // Direita ou esquerda
+        magia.velocidade = projectileSpeed;
+
+        // Se quiser girar a magia visualmente tamb√©m:
+        Vector3 escala = proj.transform.localScale;
+        escala.x = Mathf.Abs(escala.x) * direction;
+        proj.transform.localScale = escala;
+    }
+    else
+    {
+        Debug.LogWarning("Prefab da magia n√£o possui o componente Magia.");
+    }
+}
+
+
+
+
+
 
     private void MostrarAvisoPortao()
     {
@@ -149,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
         encontrouItemImage.gameObject.SetActive(true);
         encontrouCanvasGroup.alpha = 0f;
 
-        
+
         float t = 0f;
         while (t < 1f)
         {
@@ -158,12 +195,12 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSecondsRealtime(5f); 
+        yield return new WaitForSecondsRealtime(5f);
 
         encontrouItemImage.gameObject.SetActive(false);
 
         canvasDialogo.SetActive(true);
-        dialogoTexto.text = "VocÍ encontrou um item de forÁa: O anel m·gico.";
+        dialogoTexto.text = "Voc√™ encontrou um item de for√ßa: O anel m√°gico.";
 
         botaoFecharDialogo.onClick.RemoveAllListeners();
         botaoFecharDialogo.onClick.AddListener(() =>
@@ -192,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.CompareTag("carta"))
         {
-            MostrarCarta(); 
+            MostrarCarta();
         }
         if (other.CompareTag("comoda"))
         {
@@ -202,8 +239,8 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                ComodaPuzzle.instance.MostrarMensagem("A cÙmoda est· trancada. Resolva o enigma primeiro.");
-                Debug.Log("A cÙmoda est· trancada. Resolva o enigma primeiro.");
+                ComodaPuzzle.instance.MostrarMensagem("A c√¥moda est√° trancada. Resolva o enigma primeiro.");
+                Debug.Log("A c√¥moda est√° trancada. Resolva o enigma primeiro.");
             }
         }
     }

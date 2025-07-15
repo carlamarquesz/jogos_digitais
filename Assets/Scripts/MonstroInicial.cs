@@ -11,21 +11,33 @@ public class MonstroInicial : MonoBehaviour
     public GameObject canvasMonstro;
     public TextMeshProUGUI textoDialogo;
     public Button botaoContinuar;
-    public GameObject imagemPoder; 
+    public GameObject imagemPoder;
 
     private GameObject monstroInstanciado;
     private int falaAtual = 0;
 
+    // ‚úÖ Adiciona este sinalizador est√°tico
+    private static bool monstroJaApareceu = false;
+
     private List<string> falas = new List<string>
     {
-        "Seu poder... vocÍ n„o È nada sem ele, mago patÈtico.",
-        "Espalhei suas relÌquias por esta mans„o amaldiÁoada. Cada cÙmodo guarda um fragmento do que vocÍ era.",
-        "Se quiser entrar no sal„o principal e encontrar a garota... ter· que procurar seus itens por cada canto escuro deste lugar."
+        "Seu poder... voc√™ n√£o √© nada sem ele, mago pat√©tico.",
+        "Espalhei suas rel√≠quias por esta mans√£o amaldi√ßoada. Cada c√¥modo guarda um fragmento do que voc√™ era.",
+        "Se quiser entrar no sal√£o principal e encontrar a garota... ter√° que procurar seus itens por cada canto escuro deste lugar."
     };
 
     void Start()
     {
-        StartCoroutine(ApagarMonstro());
+        if (!monstroJaApareceu)
+        {
+            StartCoroutine(ApagarMonstro());
+            monstroJaApareceu = true;
+        }
+        else
+        {
+            // Se j√° apareceu, apenas destr√≥i o objeto ou desativa o script
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator ApagarMonstro()
@@ -81,26 +93,23 @@ public class MonstroInicial : MonoBehaviour
         }
 
         cg.alpha = 0f;
-
-        float duracao = 1f; 
+        float duracao = 1f;
         float tempo = 0f;
 
         while (tempo < duracao)
         {
-            tempo += Time.unscaledDeltaTime; 
+            tempo += Time.unscaledDeltaTime;
             cg.alpha = Mathf.Lerp(0f, 1f, tempo / duracao);
             yield return null;
         }
 
         cg.alpha = 1f;
-
         yield return new WaitForSecondsRealtime(3f);
 
         imagemPoder.SetActive(false);
         canvasMonstro.SetActive(true);
-        MostrarFala(); 
+        MostrarFala();
     }
-
 
     void FecharCanvas()
     {
