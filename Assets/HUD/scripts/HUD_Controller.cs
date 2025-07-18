@@ -3,16 +3,26 @@ using UnityEngine.UI;
 
 public class HUD_Controller : MonoBehaviour
 {
-    public Slider slider;
+    public Slider sliderLife;
+    public Slider sliderMana;
 
     public void SetMaxHealth(int health)
     {
-        slider.maxValue = health;
+        sliderLife.maxValue = health;
     }
 
     public void SetHealth(int health)
     {
-        slider.value = health;
+        sliderLife.value = health;
+    }
+    public void SetMaxMana(int mana)
+    {
+        sliderMana.maxValue = mana;
+    }
+
+    public void SetMana(int mana)
+    {
+        sliderMana.value = mana;
     }
 
 
@@ -25,6 +35,7 @@ public class HUD_Controller : MonoBehaviour
         if (playerHealth != null)
         {
             SetHealth(playerHealth.currentHealth);
+            SetMana(playerHealth.currentMana);
         }
         else
         {

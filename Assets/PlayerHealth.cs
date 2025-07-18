@@ -5,18 +5,19 @@ using TMPro;
 public class PlayerHealth : MonoBehaviour
 {   
     public HUD_Controller hud;
-    [HideInInspector]
     public int maxHealth;
-    [HideInInspector]
     public int currentHealth;
+    public int maxMana;
+    public int currentMana;
 
-    [Header("Refer�ncias")]
+    [Header("Referências")]
     public GameObject gameOverUI;
     public HealthBarController healthBar;
     public TextMeshProUGUI textoGameOverTempo;
     public TextMeshProUGUI textoGameOverPontos;
 
     public static int saveHealth = -1;
+    public static int saveMana = -1;
 
     void Awake()
     {
@@ -24,15 +25,24 @@ public class PlayerHealth : MonoBehaviour
         {
             hud.SetMaxHealth(maxHealth);
             PlayerHealth.saveHealth = maxHealth;
+            //Caso esteja negativo, significa que é a primeira vez que o jogo é iniciado
+            //então, também é o primeiro valor de Mana.
+            hud.SetMaxMana(maxMana);
+            PlayerHealth.saveMana = maxMana;
         }
         else
         {
             currentHealth = PlayerHealth.saveHealth;
             hud.SetHealth(currentHealth);
+            //Seta o mana salvo
+            currentMana = PlayerHealth.saveMana;
+            hud.SetMana(currentMana);
+            //Se o valor salvo for maior que o máximo, seta o máximo como o valor salvo
         }
     }
     void Start()
     {
+        hud.SetMana(10);
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(false);
