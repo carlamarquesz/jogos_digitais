@@ -1,0 +1,96 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+public class PlayerHealth : MonoBehaviour
+{   
+    public HUD_Controller hud;
+    public int maxHealth;
+    public int currentHealth;
+    public int maxMana;
+    public int currentMana;
+
+    [Header("Referências")]
+    public GameObject gameOverUI;
+    public HealthBarController healthBar;
+    public TextMeshProUGUI textoGameOverTempo;
+    public TextMeshProUGUI textoGameOverPontos;
+
+    public static int saveHealth = -1;
+    public static int saveMana = -1;
+
+    void Awake()
+    {
+        if (saveHealth < 0)
+        {
+            hud.SetMaxHealth(maxHealth);
+            PlayerHealth.saveHealth = maxHealth;
+            //Caso esteja negativo, significa que é a primeira vez que o jogo é iniciado
+            //então, também é o primeiro valor de Mana.
+            hud.SetMaxMana(maxMana);
+            PlayerHealth.saveMana = maxMana;
+        }
+        else
+        {
+            currentHealth = PlayerHealth.saveHealth;
+            hud.SetHealth(currentHealth);
+            //Seta o mana salvo
+            currentMana = PlayerHealth.saveMana;
+            hud.SetMana(currentMana);
+            //Se o valor salvo for maior que o máximo, seta o máximo como o valor salvo
+        }
+    }
+    void Start()
+    {
+        hud.SetMana(10);
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(false);
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        saveHealth = currentHealth;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        hud.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Time.timeScale = 0f; 
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.FimDeJogo(); 
+            if (textoGameOverTempo != null)
+            {
+                float tempoFinal = GameManager.instance.tempo;
+                int min = Mathf.FloorToInt(tempoFinal / 60f);
+                int seg = Mathf.FloorToInt(tempoFinal % 60f);
+                textoGameOverTempo.text = $"Tempo: {min:D2}:{seg:D2}";
+            } 
+            if (textoGameOverPontos != null)
+            {
+                textoGameOverPontos.text = $"Pontos: {GameManager.instance.pontos:D3}";
+            }
+        }
+
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
+    }
+
+    public void RestartScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+}
