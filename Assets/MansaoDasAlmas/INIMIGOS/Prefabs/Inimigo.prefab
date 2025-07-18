@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2523864344502781717}
   - component: {fileID: 7326847773803723909}
   - component: {fileID: 3996485958230299482}
+  - component: {fileID: 8064606716498277857}
   m_Layer: 0
   m_Name: Inimigo
   m_TagString: Enemy
@@ -232,10 +233,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bd30d919f313740b8dad02b4a036f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  currentHealth: 3
+  maxHealth: 5
+  currentHealth: 5
   explosionPrefab: {fileID: 1640610561240288236, guid: 117a2af6991a32b4695e8cdd2ac1803e,
     type: 3}
+--- !u!114 &8064606716498277857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3805910206916320347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad383f40fbbb294c99468948f3db05b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4865504361046471535
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &933129940757123785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8108689704001669016}
+  - component: {fileID: 7863297029889509323}
+  m_Layer: 0
+  m_Name: MagiHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8108689704001669016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933129940757123785}
+  serializedVersion: 2
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 1.05, y: -0.15, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8196966316482584922}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+--- !u!114 &7863297029889509323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933129940757123785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cf1721d862ea84087902f37bc5c3f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiController: {fileID: 0}
+  magias:
+  - {fileID: 7936069983540711227, guid: bf0243bd545141943b5e2d706a563bb1, type: 3}
+  - {fileID: 1997621554151792903, guid: 6a9578a111b826a44bb376a35e2825a6, type: 3}
+  - {fileID: 1040035936658168248, guid: f9b1a5bac58fe854a82a2d68b1e0b658, type: 3}
+  custoManaPorMagia: 
+  currentMagiaIndex: 0
 --- !u!1 &1572850003258897495
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,6 +90,7 @@ Transform:
   m_Children:
   - {fileID: 4617902046328527093}
   - {fileID: 293239756506475122}
+  - {fileID: 8108689704001669016}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8324264888462376356
@@ -132,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   jumpForce: 6
-  magiaScript: {fileID: 0}
+  magiaScript: {fileID: 7863297029889509323}
   rocketFlame: {fileID: 8512203047230645093}
   shootPoint: {fileID: 293239756506475122}
   enemy: {fileID: 0}
@@ -234,8 +286,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hud: {fileID: 0}
-  maxHealth: 6
-  currentHealth: 6
+  maxHealth: 100
+  currentHealth: 100
+  maxMana: 100
+  currentMana: 100
   gameOverUI: {fileID: 0}
   healthBar: {fileID: 0}
   textoGameOverTempo: {fileID: 0}

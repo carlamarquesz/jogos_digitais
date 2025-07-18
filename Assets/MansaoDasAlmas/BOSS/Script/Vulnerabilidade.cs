@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Vulnerabilidade : MonoBehaviour
 {
-    public TipoMagia[] fraquezas;
+    public MagicType[] fraquezas;  // Troque TipoMagia por MagicType
 
-    public bool EhVulneravelA(TipoMagia tipo)
+    public bool EhVulneravelA(MagicType tipo)
     {
         foreach (var f in fraquezas)
         {

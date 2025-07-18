@@ -637,6 +637,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &196591905 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 780235240778097471, guid: 78a6140fae4fcf64fa4bcc0e9083bad7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6007231106049941486}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &203480162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1301,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &563885309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5143865962171335839, guid: 78a6140fae4fcf64fa4bcc0e9083bad7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6007231106049941486}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &647860290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,18 +1391,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647860290}
   m_CullTransparentMesh: 1
---- !u!114 &671822924 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3844979939189095392, guid: 78a6140fae4fcf64fa4bcc0e9083bad7,
-    type: 3}
-  m_PrefabInstance: {fileID: 6007231106049941486}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f158bb91c3c9cbbaa59d5272bf19b79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &673907264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,6 +1934,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694240262}
   m_CullTransparentMesh: 1
+--- !u!1 &706682924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 806776911637648652, guid: 78a6140fae4fcf64fa4bcc0e9083bad7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6007231106049941486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &706682929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706682924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e8db3d23487eda479781511a6aac578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderLife: {fileID: 563885309}
+  sliderMana: {fileID: 196591905}
 --- !u!1 &860229061
 GameObject:
   m_ObjectHideFlags: 0
@@ -4388,56 +4420,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1482891781
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1482891782}
-  - component: {fileID: 1482891783}
-  m_Layer: 0
-  m_Name: MagiHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1482891782
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482891781}
-  serializedVersion: 2
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: 1.05, y: -0.15, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1993302924}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!114 &1482891783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482891781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7cf1721d862ea84087902f37bc5c3f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiController: {fileID: 1539324768}
-  magias:
-  - {fileID: 7936069983540711227, guid: bf0243bd545141943b5e2d706a563bb1, type: 3}
-  - {fileID: 1997621554151792903, guid: 6a9578a111b826a44bb376a35e2825a6, type: 3}
-  - {fileID: 1040035936658168248, guid: f9b1a5bac58fe854a82a2d68b1e0b658, type: 3}
-  currentMagiaIndex: 0
 --- !u!1 &1538589040
 GameObject:
   m_ObjectHideFlags: 0
@@ -6117,27 +6099,12 @@ PrefabInstance:
         type: 3}
       propertyPath: hud
       value: 
-      objectReference: {fileID: 671822924}
-    - target: {fileID: 6580406202932777677, guid: c4b7ccfcfad33d24aa007db5cde6286f,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6580406202932777677, guid: c4b7ccfcfad33d24aa007db5cde6286f,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 706682929}
     - target: {fileID: 6580406202932777677, guid: c4b7ccfcfad33d24aa007db5cde6286f,
         type: 3}
       propertyPath: gameOverUI
       value: 
       objectReference: {fileID: 24606677}
-    - target: {fileID: 6580406202932777677, guid: c4b7ccfcfad33d24aa007db5cde6286f,
-        type: 3}
-      propertyPath: currentHealth
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 6580406202932777677, guid: c4b7ccfcfad33d24aa007db5cde6286f,
         type: 3}
       propertyPath: textoGameOverTempo
@@ -6148,6 +6115,31 @@ PrefabInstance:
       propertyPath: textoGameOverPontos
       value: 
       objectReference: {fileID: 673907266}
+    - target: {fileID: 7863297029889509323, guid: c4b7ccfcfad33d24aa007db5cde6286f,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1539324768}
+    - target: {fileID: 7863297029889509323, guid: c4b7ccfcfad33d24aa007db5cde6286f,
+        type: 3}
+      propertyPath: custoManaPorMagia.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863297029889509323, guid: c4b7ccfcfad33d24aa007db5cde6286f,
+        type: 3}
+      propertyPath: 'custoManaPorMagia.Array.data[0]'
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863297029889509323, guid: c4b7ccfcfad33d24aa007db5cde6286f,
+        type: 3}
+      propertyPath: 'custoManaPorMagia.Array.data[1]'
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863297029889509323, guid: c4b7ccfcfad33d24aa007db5cde6286f,
+        type: 3}
+      propertyPath: 'custoManaPorMagia.Array.data[2]'
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8196966316482584922, guid: c4b7ccfcfad33d24aa007db5cde6286f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6205,11 +6197,6 @@ PrefabInstance:
       objectReference: {fileID: 2029926753}
     - target: {fileID: 8899832852237987674, guid: c4b7ccfcfad33d24aa007db5cde6286f,
         type: 3}
-      propertyPath: magiaScript
-      value: 
-      objectReference: {fileID: 1482891783}
-    - target: {fileID: 8899832852237987674, guid: c4b7ccfcfad33d24aa007db5cde6286f,
-        type: 3}
       propertyPath: botaoFecharAviso
       value: 
       objectReference: {fileID: 1775734769}
@@ -6220,11 +6207,7 @@ PrefabInstance:
       objectReference: {fileID: 248008625}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8196966316482584922, guid: c4b7ccfcfad33d24aa007db5cde6286f,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1482891782}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4b7ccfcfad33d24aa007db5cde6286f, type: 3}
 --- !u!1001 &3088320102737993093
@@ -6250,6 +6233,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1993302924}
+    - target: {fileID: 2901374710352837775, guid: e7c91f8522730ca4daa00233d1725051,
+        type: 3}
+      propertyPath: shootIntervalMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901374710352837775, guid: e7c91f8522730ca4daa00233d1725051,
+        type: 3}
+      propertyPath: shootIntervalMin
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3805910206916320347, guid: e7c91f8522730ca4daa00233d1725051,
         type: 3}
       propertyPath: m_Name
@@ -6503,6 +6496,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7052372282319062754, guid: 78a6140fae4fcf64fa4bcc0e9083bad7,
+        type: 3}
+      propertyPath: m_Name
+      value: baseFillMana
+      objectReference: {fileID: 0}
     - target: {fileID: 7097247860943921720, guid: 78a6140fae4fcf64fa4bcc0e9083bad7,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6513,7 +6511,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3844979939189095392, guid: 78a6140fae4fcf64fa4bcc0e9083bad7, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2537203015915058503, guid: 78a6140fae4fcf64fa4bcc0e9083bad7, type: 3}
     - {fileID: 2347846945697659811, guid: 78a6140fae4fcf64fa4bcc0e9083bad7, type: 3}
@@ -6531,7 +6530,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1230535036}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 806776911637648652, guid: 78a6140fae4fcf64fa4bcc0e9083bad7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 706682929}
   m_SourcePrefab: {fileID: 100100000, guid: 78a6140fae4fcf64fa4bcc0e9083bad7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

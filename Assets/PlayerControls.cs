@@ -153,6 +153,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CastSpell"",
+                    ""type"": ""Button"",
+                    ""id"": ""08930118-ca14-4fb5-8a33-561c620e04e2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -276,6 +285,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fdc73402-ee07-481c-9049-47eedb9475cb"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CastSpell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -291,6 +311,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_NextSpell = m_Player.FindAction("NextSpell", throwIfNotFound: true);
         m_Player_PrevSpell = m_Player.FindAction("PrevSpell", throwIfNotFound: true);
+        m_Player_CastSpell = m_Player.FindAction("CastSpell", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -378,6 +399,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_NextSpell;
     private readonly InputAction m_Player_PrevSpell;
+    private readonly InputAction m_Player_CastSpell;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -417,6 +439,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/PrevSpell".
         /// </summary>
         public InputAction @PrevSpell => m_Wrapper.m_Player_PrevSpell;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/CastSpell".
+        /// </summary>
+        public InputAction @CastSpell => m_Wrapper.m_Player_CastSpell;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -464,6 +490,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PrevSpell.started += instance.OnPrevSpell;
             @PrevSpell.performed += instance.OnPrevSpell;
             @PrevSpell.canceled += instance.OnPrevSpell;
+            @CastSpell.started += instance.OnCastSpell;
+            @CastSpell.performed += instance.OnCastSpell;
+            @CastSpell.canceled += instance.OnCastSpell;
         }
 
         /// <summary>
@@ -496,6 +525,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PrevSpell.started -= instance.OnPrevSpell;
             @PrevSpell.performed -= instance.OnPrevSpell;
             @PrevSpell.canceled -= instance.OnPrevSpell;
+            @CastSpell.started -= instance.OnCastSpell;
+            @CastSpell.performed -= instance.OnCastSpell;
+            @CastSpell.canceled -= instance.OnCastSpell;
         }
 
         /// <summary>
@@ -585,5 +617,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPrevSpell(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CastSpell" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCastSpell(InputAction.CallbackContext context);
     }
 }

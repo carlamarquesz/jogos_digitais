@@ -9,15 +9,18 @@ public class HUD_Controller : MonoBehaviour
     public void SetMaxHealth(int health)
     {
         sliderLife.maxValue = health;
+        sliderLife.value = health;
     }
 
     public void SetHealth(int health)
     {
         sliderLife.value = health;
     }
+
     public void SetMaxMana(int mana)
     {
         sliderMana.maxValue = mana;
+        sliderMana.value = mana;
     }
 
     public void SetMana(int mana)
@@ -25,26 +28,21 @@ public class HUD_Controller : MonoBehaviour
         sliderMana.value = mana;
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Screen.SetResolution(1280, 720, false); // false = janela, true = tela cheia
+        Screen.SetResolution(1280, 720, false);
 
         PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         if (playerHealth != null)
         {
+            SetMaxHealth(playerHealth.maxHealth);
             SetHealth(playerHealth.currentHealth);
+            SetMaxMana(playerHealth.maxMana);
             SetMana(playerHealth.currentMana);
         }
         else
         {
             Debug.LogWarning("PlayerHealth instance not found.");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

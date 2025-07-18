@@ -1,14 +1,11 @@
 using UnityEngine;
 
-public enum TipoMagia { Fogo, Gelo, Trevas, Luz, Vento }
-
 public class Magia : MonoBehaviour
 {
-    public TipoMagia tipoMagia = TipoMagia.Fogo;
+    public MagicType tipoMagia = MagicType.Fire;
 
     public float velocidade = 5f;
     public Vector2 direcao = Vector2.right;
-    public int dano = 1;
 
     [Header("Efeitos visuais e sons")]
     public ParticleSystem efeitoParticulas;
@@ -39,33 +36,33 @@ public class Magia : MonoBehaviour
             EnemyHealth vida = other.GetComponent<EnemyHealth>();
             Vulnerabilidade inimigoVuln = other.GetComponent<Vulnerabilidade>();
 
-            if (vida != null && inimigoVuln != null)
+            if (vida != null)
             {
-                if (inimigoVuln.EhVulneravelA(tipoMagia))
+                // Só aplica slow se for gelo e inimigo vulnerável
+                if (tipoMagia == MagicType.Ice && (inimigoVuln == null || inimigoVuln.EhVulneravelA(tipoMagia)))
                 {
-                    vida.TakeDamage(dano);
-                    Destroy(gameObject);
+                    EnemySlow slow = other.GetComponent<EnemySlow>();
+                    if (slow != null)
+                    {
+                        slow.AplicarLentidao(0.6f, 2f); // 60% slow por 2 segundos
+                        Debug.Log("Slow aplicado no inimigo.");
+                    }
                 }
-                else
+
+                if (inimigoVuln != null && !inimigoVuln.EhVulneravelA(tipoMagia))
                 {
-                    // Se quiser, toque som ou efeito de bloqueio aqui
                     Debug.Log("Magia bloqueada pelo inimigo!");
                     Destroy(gameObject);
+                    return;
                 }
-            }
-            else
-            {
-                // Caso o inimigo não tenha script de vulnerabilidade, aplica dano normal
-                if (vida != null)
-                {
-                    vida.TakeDamage(dano);
-                    Destroy(gameObject);
-                }
+
+                vida.TakeDamage(tipoMagia);
+
+                Destroy(gameObject);
             }
         }
-        else //if (other.CompareTag("Obstacle"))
+        else
         {
-            // Destrói magia ao bater em obstáculo
             Destroy(gameObject);
         }
     }

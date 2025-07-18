@@ -134,34 +134,56 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Shoot()
+{
+    if (magiaScript == null)
     {
-        animator.Play("dispararPoder", 0, 0f);
-
-        GameObject prefab = CurrentMagiaPrefab;
-        if (prefab == null)
-        {
-            Debug.LogWarning("Nenhuma magia selecionada para disparar.");
-            return;
-        }
-
-        GameObject proj = Instantiate(prefab, shootPoint.position, shootPoint.rotation);
-
-        Magia magia = proj.GetComponent<Magia>();
-        if (magia != null)
-        {
-            float direction = transform.localScale.x > 0 ? 1f : -1f;
-            magia.direcao = new Vector2(direction, 0f);
-            magia.velocidade = projectileSpeed;
-
-            Vector3 escala = proj.transform.localScale;
-            escala.x = Mathf.Abs(escala.x) * direction;
-            proj.transform.localScale = escala;
-        }
-        else
-        {
-            Debug.LogWarning("Prefab da magia não possui o componente Magia.");
-        }
+        Debug.LogWarning("MagiaScript não está atribuído no PlayerMovement.");
+        return;
     }
+
+    GameObject prefab = magiaScript.magias[magiaScript.currentMagiaIndex];
+
+    if (prefab == null)
+    {
+        Debug.LogWarning("Nenhuma magia selecionada.");
+        return;
+    }
+
+    int custo = (magiaScript.custoManaPorMagia != null && magiaScript.currentMagiaIndex < magiaScript.custoManaPorMagia.Length)
+                ? magiaScript.custoManaPorMagia[magiaScript.currentMagiaIndex]
+                : 10;
+
+    if (magiaScript.playerHealth.currentMana < custo)
+    {
+        Debug.Log("Mana insuficiente para lançar a magia.");
+        return;
+    }
+
+    // Gasta mana
+    magiaScript.playerHealth.UseMana(custo);
+    Debug.Log($"Usou magia {magiaScript.currentMagiaIndex}, custo: {custo}. Mana restante: {magiaScript.playerHealth.currentMana}");
+
+    // Animação e disparo
+    animator.Play("dispararPoder", 0, 0f);
+    GameObject proj = Instantiate(prefab, shootPoint.position, shootPoint.rotation);
+
+    Magia magia = proj.GetComponent<Magia>();
+    if (magia != null)
+    {
+        float direction = transform.localScale.x > 0 ? 1f : -1f;
+        magia.direcao = new Vector2(direction, 0f);
+        magia.velocidade = projectileSpeed;
+
+        Vector3 escala = proj.transform.localScale;
+        escala.x = Mathf.Abs(escala.x) * direction;
+        proj.transform.localScale = escala;
+    }
+    else
+    {
+        Debug.LogWarning("Prefab da magia não possui o componente Magia.");
+    }
+}
+
 
     // Novo método para aplicar lentidão cumulativa
     public void ModifySpeedCumulative(float slowPercent, float duration)

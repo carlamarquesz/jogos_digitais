@@ -998,7 +998,6 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-<<<<<<< HEAD:Assets/MansaoDasAlmas/BOSS/Sprite/ChatGPT Image 16_07_2025, 00_56_45.png.meta
       ChatGPT Image 16_07_2025, 00_56_45_0: 8341696413855004246
       ChatGPT Image 16_07_2025, 00_56_45_1: -7960101562766445071
       ChatGPT Image 16_07_2025, 00_56_45_10: 7164011603775308958
@@ -1034,43 +1033,6 @@ TextureImporter:
       ChatGPT Image 16_07_2025, 00_56_45_7: 8973489056889620939
       ChatGPT Image 16_07_2025, 00_56_45_8: -2979186592995138034
       ChatGPT Image 16_07_2025, 00_56_45_9: 2361566475430289747
-=======
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_0: 7131596188246868396
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_1: 6014254881410058718
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_10: 4337140172346788189
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_11: -2590184114200637642
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_12: -570204616833372190
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_13: 1321989103244870014
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_14: 2432813570480652575
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_15: 6959855143087026236
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_16: 316043617994984334
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_17: -4594308489743313071
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_18: 8331418152152745948
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_19: -8867539738177115289
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_2: -6629497894408645072
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_20: -3698400491272884095
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_21: 2278927739406799616
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_22: 2084019810005709399
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_23: 7314646904886429643
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_24: -8273569738035699897
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_25: -2618883040584058497
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_26: 2888777138473847373
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_27: -8521422889899463865
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_28: -7087060730404565973
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_29: -2246439971444392269
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_3: 5311056173116422622
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_30: -972254198819753540
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_31: 48977528088542294
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_32: -3961034671733727100
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_33: -8222422214765203056
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_34: -4335271416468565474
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_4: -443150605325983666
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_5: 1742641473455652071
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_6: 769283221343358271
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_7: 6015738072815974339
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_8: 5637658599873575254
-      ChatGPT_Image_10_07_2025__11_25_44-removebg-preview_9: -2789749106638647470
->>>>>>> 90a430124996cb85cae97f9ca49cfc2a03a95bc5:Assets/MAGIAS/Sprites/ChatGPT_Image_10_07_2025__11_25_44-removebg-preview.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -135,7 +135,6 @@ MonoBehaviour:
   tipoMagia: 0
   velocidade: 5
   direcao: {x: 1, y: 0}
-  dano: 1
   efeitoParticulas: {fileID: 0}
   somDisparo: {fileID: 0}
 --- !u!61 &2428945011148476584

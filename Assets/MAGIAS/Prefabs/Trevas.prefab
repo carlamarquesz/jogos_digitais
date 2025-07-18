@@ -171,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9207807868264396514
 Transform:
   m_ObjectHideFlags: 0
@@ -286,7 +286,6 @@ MonoBehaviour:
   tipoMagia: 0
   velocidade: 5
   direcao: {x: 1, y: 0}
-  dano: 1
   efeitoParticulas: {fileID: 0}
   somDisparo: {fileID: 0}
 --- !u!61 &4660364790904170071
