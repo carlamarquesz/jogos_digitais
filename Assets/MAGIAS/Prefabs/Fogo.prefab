@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4300927343222527526}
   - component: {fileID: 5572814583311872108}
   - component: {fileID: 2428945011148476584}
-  m_Layer: 6
+  - component: {fileID: 5362036540479029593}
+  m_Layer: 8
   m_Name: Fogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,15 +109,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1297803427, guid: 41c758a85ff04d544b6a61f0300fd6e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.66, y: 1.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5572814583311872108
@@ -131,9 +132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa83e185de6a7d642b6d29e2300dde3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipoMagia: 0
   velocidade: 5
   direcao: {x: 1, y: 0}
   dano: 1
+  efeitoParticulas: {fileID: 0}
+  somDisparo: {fileID: 0}
 --- !u!61 &2428945011148476584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,15 +175,37 @@ BoxCollider2D:
   m_Offset: {x: 0.025, y: -0.032}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.66, y: 1.66}
+    newSize: {x: 1.66, y: 1.66}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 0.05, y: 0.05}
   m_EdgeRadius: 0
+--- !u!95 &5362036540479029593
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997621554151792903}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 42f3bcc42e6189344813358584802b82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2428507675045394007
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1304122280485375414}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 277882864628364282}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1886363394873669133}
   - component: {fileID: 8347729286692391700}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ChatGPT_Image_10_07_2025__11_08_17-removebg-preview_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,6 +354,6 @@ SpriteRenderer:
   m_Size: {x: 0.35, y: 0.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

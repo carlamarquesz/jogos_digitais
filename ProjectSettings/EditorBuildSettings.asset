@@ -6,20 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MenuPrincipal.unity
+    path: Assets/MansaoDasAlmas/Scenes/MenuPrincipal.unity
     guid: 43a2ba2966c3a88428c61c5ac808589b
   - enabled: 0
     path: Assets/1Parte_Atividade.unity
     guid: 6f771f49eabafab42beae66e43d06abb
   - enabled: 1
-    path: Assets/Cutscene.unity
+    path: Assets/MansaoDasAlmas/Scenes/Cutscene.unity
     guid: 3c7d503384e3cb54aa99a04ab171b67a
   - enabled: 1
-    path: Assets/Game.unity
+    path: Assets/MansaoDasAlmas/Scenes/Game.unity
     guid: 48b7c3ee573629e4a96aaca1cd2fbb18
   - enabled: 1
-    path: Assets/SalaJantar.unity
+    path: Assets/MansaoDasAlmas/Scenes/SalaJantar.unity
     guid: f4565046a6ae2594bbefd6a632df622b
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/SalaBoss.unity
+    guid: 0b531e51903b6be458c9164c217574a8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 5e716bb9195b9eb49a2ccb4c51691dc6,
       type: 3}

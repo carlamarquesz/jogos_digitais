@@ -1,29 +1,36 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogoManager : MonoBehaviour
 {
     public GameObject canvasDialogo;  
-    public Button botaoContinuar;    
+    public Button botaoContinuar;
+
+    private static bool dialogoMostrado = false; // variável estática para controlar execução única
 
     private void Start()
     {
-        StartCoroutine(MostrarDialogo());
+        if (!dialogoMostrado && SceneManager.GetActiveScene().name == "Game")
+        {
+            StartCoroutine(MostrarDialogo());
+            dialogoMostrado = true;  // marca como mostrado
+        }
     }
 
     IEnumerator MostrarDialogo()
     {
-        yield return new WaitForSeconds(2f);  
-        canvasDialogo.SetActive(true);        
-        Time.timeScale = 0f;                  
+        yield return new WaitForSeconds(2f);
+        canvasDialogo.SetActive(true);
+        Time.timeScale = 0f;
 
         botaoContinuar.onClick.AddListener(FecharDialogo);
     }
 
     void FecharDialogo()
     {
-        canvasDialogo.SetActive(false); 
-        Time.timeScale = 1f;             
+        canvasDialogo.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
