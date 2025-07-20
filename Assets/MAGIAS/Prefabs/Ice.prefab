@@ -46,12 +46,12 @@ GameObject:
   - component: {fileID: 2471564543722416327}
   - component: {fileID: 7647227603674389835}
   m_Layer: 8
-  m_Name: Gelo
+  m_Name: Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7888160897341376587
 Transform:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 885437990, guid: 2995336726673a042b3453e868c1d5b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 1
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.66, y: 1.66}
   m_AdaptiveModeThreshold: 0.5

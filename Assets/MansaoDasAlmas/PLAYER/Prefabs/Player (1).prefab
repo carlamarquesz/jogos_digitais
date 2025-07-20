@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 1040035936658168248, guid: f9b1a5bac58fe854a82a2d68b1e0b658, type: 3}
   custoManaPorMagia: 
   currentMagiaIndex: 0
+  playerHealth: {fileID: 0}
 --- !u!1 &1572850003258897495
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,7 +67,6 @@ GameObject:
   - component: {fileID: 125737666661028374}
   - component: {fileID: 3687440210665478037}
   - component: {fileID: 6580406202932777677}
-  - component: {fileID: 7760669908248910709}
   - component: {fileID: 3691852510256889103}
   m_Layer: 0
   m_Name: Player (1)
@@ -294,18 +294,8 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   textoGameOverTempo: {fileID: 0}
   textoGameOverPontos: {fileID: 0}
---- !u!114 &7760669908248910709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572850003258897495}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e946dc78d20a83458b8bd349f28f909, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  manaRegenAmount: 5
+  manaRegenInterval: 1
 --- !u!114 &3691852510256889103
 MonoBehaviour:
   m_ObjectHideFlags: 0

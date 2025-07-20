@@ -86,10 +86,10 @@ void OnDisable()
             uiController.AtualizarIconeSelecionado(currentMagiaIndex);
     }
 
-    void TentarUsarMagia()
+   void TentarUsarMagia()
 {
     Debug.Log("Tentando usar magia...");
-    
+
     if (magias.Length == 0)
     {
         Debug.LogWarning("Nenhuma magia configurada!");
@@ -113,13 +113,27 @@ void OnDisable()
         playerHealth.UseMana(custo);
         Debug.Log($"Magia {currentMagiaIndex} usada! Mana restante: {playerHealth.currentMana}");
 
-        // Instanciar magia se quiser:
-        // Instantiate(magias[currentMagiaIndex], transform.position, Quaternion.identity);
+        // Instancia prefab
+        GameObject magiaObj = Instantiate(magias[currentMagiaIndex], transform.position, Quaternion.identity);
+
+        Magia magiaScript = magiaObj.GetComponent<Magia>();
+        if (magiaScript != null)
+        {
+            // Defina aqui o tipo correto, exemplo:
+            // supondo que você tenha uma lista/array de MagicType correspondentes
+            MagicType[] tiposMagia = new MagicType[] { MagicType.Darkness,MagicType.Fire, MagicType.Ice  /* etc */ };
+            
+            if(currentMagiaIndex < tiposMagia.Length)
+                magiaScript.tipoMagia = tiposMagia[currentMagiaIndex];
+            else
+                magiaScript.tipoMagia = MagicType.Fire; // padrão
+        }
     }
     else
     {
         Debug.Log("Mana insuficiente para usar a magia!");
     }
 }
+
 
 }

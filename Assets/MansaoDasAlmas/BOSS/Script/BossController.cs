@@ -8,6 +8,7 @@ public class BossController : MonoBehaviour
 
     public MagicManager magicManager;
 
+    public float walkSpeed = 1.5f;       // Velocidade devagar para andar
     public float dashSpeed = 8f;
     public float dashCooldown = 1f;
     private float lastDashTime;
@@ -44,6 +45,14 @@ public class BossController : MonoBehaviour
         if (distance < detectionRange && podeDash && !isDashing)
         {
             dashCoroutine = StartCoroutine(DashAttack());
+        }
+
+        // Movimentação lenta em direção ao player, se não estiver dashing
+        if (!isDashing)
+        {
+            Vector2 direction = (player.position - transform.position).normalized;
+            Vector2 novaPosicao = rb.position + direction * walkSpeed * Time.deltaTime;
+            rb.MovePosition(novaPosicao);
         }
 
         if (!isDashing && magicManager != null && magicManager.CanCast())

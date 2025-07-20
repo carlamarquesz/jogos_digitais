@@ -3,7 +3,6 @@ using UnityEngine;
 public class Magia : MonoBehaviour
 {
     public MagicType tipoMagia = MagicType.Fire;
-
     public float velocidade = 5f;
     public Vector2 direcao = Vector2.right;
 
@@ -31,35 +30,44 @@ public class Magia : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Boss"))
         {
-            EnemyHealth vida = other.GetComponent<EnemyHealth>();
-            Vulnerabilidade inimigoVuln = other.GetComponent<Vulnerabilidade>();
+            // --- CHECAR ENEMY NORMAL ---
+            var vidaEnemy = other.GetComponent<EnemyHealth>();
+            var vulnerabilidade = other.GetComponent<Vulnerabilidade>();
 
-            if (vida != null)
+            if (vidaEnemy != null)
             {
-                // Só aplica slow se for gelo e inimigo vulnerável
-                if (tipoMagia == MagicType.Ice && (inimigoVuln == null || inimigoVuln.EhVulneravelA(tipoMagia)))
+                if (tipoMagia == MagicType.Ice && (vulnerabilidade == null || vulnerabilidade.EhVulneravelA(tipoMagia)))
                 {
                     EnemySlow slow = other.GetComponent<EnemySlow>();
                     if (slow != null)
-                    {
-                        slow.AplicarLentidao(0.6f, 2f); // 60% slow por 2 segundos
-                        Debug.Log("Slow aplicado no inimigo.");
-                    }
+                        slow.AplicarLentidao(0.6f, 2f);
                 }
 
-                if (inimigoVuln != null && !inimigoVuln.EhVulneravelA(tipoMagia))
+                if (vulnerabilidade != null && !vulnerabilidade.EhVulneravelA(tipoMagia))
                 {
                     Debug.Log("Magia bloqueada pelo inimigo!");
                     Destroy(gameObject);
                     return;
                 }
 
-                vida.TakeDamage(tipoMagia);
-
+                vidaEnemy.TakeDamage(tipoMagia);
                 Destroy(gameObject);
+                return;
             }
+
+            // --- CHECAR BOSS ---
+            var bossHealth = other.GetComponent<BossHealth>();
+            if (bossHealth != null)
+            {
+                bossHealth.TakeDamage(tipoMagia);
+                Destroy(gameObject);
+                return;
+            }
+
+            // Se chegou até aqui, destrua de qualquer forma
+            Destroy(gameObject);
         }
         else
         {

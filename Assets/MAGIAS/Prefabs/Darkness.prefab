@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 4660364790904170071}
   - component: {fileID: 2714388272269201136}
   m_Layer: 8
-  m_Name: Trevas
+  m_Name: Darkness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,7 +263,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -34681365, guid: bd27bb898ae32ff4bb8c02f6965b075c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 1
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.66, y: 1.66}
   m_AdaptiveModeThreshold: 0.5
