@@ -26,6 +26,45 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MansaoDasAlmas/Scenes/Ritual.unity
     guid: f4dd08117eaa6f34a8b30117b8be47cf
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/PortaCorredor1.unity
+    guid: 0181b7b2bad414545919d135918af2b3
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/Corredor.unity
+    guid: 40fbd35f1ebdc494eb3e92f081020fae
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/PortaCorredor2.unity
+    guid: 3375e323bee157d4c9395b1be6437e17
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/PUZZLE2Stones.unity
+    guid: 4949b3e802fba974f80aa77e4e3842f5
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/PUZZLE1Stones.unity
+    guid: 1fa3810d72c7d154da9bddec2d09e729
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/PUZZLE1Circuitos.unity
+    guid: 2da65f55e54735345906d5c9b710e8d0
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/PUZZLE2Circuitos.unity
+    guid: 90d853ed8b6ac5046997c4662c29d947
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/Corredor1.unity
+    guid: dcb574b2b2a0cf6409a56acd7b43462c
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/PortaCorredor1C1.unity
+    guid: 94c741bf47e948443be7310fb68ec203
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/Corredor3.unity
+    guid: e9544c3c3f42b5141bbdb8af738aae7b
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/Corredor4.unity
+    guid: 9d5b008ed26ea5f44998e10a076d8846
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/PortaCorredor1 3.unity
+    guid: 1741745899907a446ad3e6def9c2fe28
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/PortaCorredor2 3.unity
+    guid: 8d886ffbfcecaa84093c16b699be0bc6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 5e716bb9195b9eb49a2ccb4c51691dc6,
       type: 3}

@@ -33,11 +33,17 @@ public class EnemyController : MonoBehaviour
         if (player != null)
         {
             Vector2 dir = (player.position - transform.position).normalized;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            center.rotation = Quaternion.Euler(0f, 0f, angle);
 
             float velocidadeAtual = (enemySlow != null) ? enemySlow.GetVelocidadeAtual() : moveSpeed;
-            rb.linearVelocity = dir * velocidadeAtual;
+
+            rb.linearVelocity = dir * velocidadeAtual;  // Usar velocity
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            center.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;  // Usar velocity
         }
 
         shootTimer -= Time.deltaTime;
@@ -50,9 +56,15 @@ public class EnemyController : MonoBehaviour
 
     void Shoot()
     {
-        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
-        Rigidbody2D rbProj = projectile.GetComponent<Rigidbody2D>();
-        rbProj.linearVelocity = shootPoint.right * projectileSpeed;
+        if (projectilePrefab != null && shootPoint != null)
+        {
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+            Rigidbody2D rbProj = projectile.GetComponent<Rigidbody2D>();
+            if (rbProj != null)
+            {
+                rbProj.linearVelocity = shootPoint.right * projectileSpeed;  // Usar velocity
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -64,7 +76,7 @@ public class EnemyController : MonoBehaviour
             PlayerHealth playerHealth = collision.collider.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(playerHealth.currentHealth); // Tira toda a vida
+                playerHealth.TakeDamage(playerHealth.currentHealth);
             }
         }
     }

@@ -16,6 +16,24 @@ TagManager:
   - portaTeste
   - Magic
   - BossMagic
+  - PortalCorredor1
+  - Porta2C
+  - Porta1C
+  - Porta3C
+  - Porta1C1
+  - Porta2C1
+  - Porta3C1
+  - PortalCorredor1C1
+  - EscadaDireita
+  - EscadaEsquerda
+  - Salao
+  - Porta1C3
+  - Porta2C3
+  - Porta3C3
+  - Porta1C4
+  - Porta2C4
+  - Porta3C4
+  - PortalCorredor3C1
   layers:
   - Default
   - TransparentFX

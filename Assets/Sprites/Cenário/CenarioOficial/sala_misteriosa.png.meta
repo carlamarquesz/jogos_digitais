@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sala_misteriosa_0: 3842093119432564640
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

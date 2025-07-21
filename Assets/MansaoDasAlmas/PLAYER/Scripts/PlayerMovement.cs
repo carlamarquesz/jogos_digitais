@@ -134,55 +134,55 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Shoot()
-{
-    if (magiaScript == null)
     {
-        Debug.LogWarning("MagiaScript não está atribuído no PlayerMovement.");
-        return;
+        if (magiaScript == null)
+        {
+            Debug.LogWarning("MagiaScript não está atribuído no PlayerMovement.");
+            return;
+        }
+
+        GameObject prefab = magiaScript.magias[magiaScript.currentMagiaIndex];
+
+        if (prefab == null)
+        {
+            Debug.LogWarning("Nenhuma magia selecionada.");
+            return;
+        }
+
+        int custo = (magiaScript.custoManaPorMagia != null && magiaScript.currentMagiaIndex < magiaScript.custoManaPorMagia.Length)
+                    ? magiaScript.custoManaPorMagia[magiaScript.currentMagiaIndex]
+                    : 10;
+
+        if (magiaScript.playerHealth.currentMana < custo)
+        {
+            Debug.Log("Mana insuficiente para lançar a magia.");
+            return;
+        }
+
+        // Gasta mana
+        magiaScript.playerHealth.UseMana(custo);
+        Debug.Log($"Usou magia {magiaScript.currentMagiaIndex}, custo: {custo}. Mana restante: {magiaScript.playerHealth.currentMana}");
+
+        // Animação e disparo
+        animator.Play("dispararPoder", 0, 0f);
+        GameObject proj = Instantiate(prefab, shootPoint.position, shootPoint.rotation);
+
+        Magia magia = proj.GetComponent<Magia>();
+        if (magia != null)
+        {
+            float direction = transform.localScale.x > 0 ? 1f : -1f;
+            magia.direcao = new Vector2(direction, 0f);
+            magia.velocidade = projectileSpeed;
+
+            Vector3 escala = proj.transform.localScale;
+            escala.x = Mathf.Abs(escala.x) * direction;
+            proj.transform.localScale = escala;
+        }
+        else
+        {
+            Debug.LogWarning("Prefab da magia não possui o componente Magia.");
+        }
     }
-
-    GameObject prefab = magiaScript.magias[magiaScript.currentMagiaIndex];
-
-    if (prefab == null)
-    {
-        Debug.LogWarning("Nenhuma magia selecionada.");
-        return;
-    }
-
-    int custo = (magiaScript.custoManaPorMagia != null && magiaScript.currentMagiaIndex < magiaScript.custoManaPorMagia.Length)
-                ? magiaScript.custoManaPorMagia[magiaScript.currentMagiaIndex]
-                : 10;
-
-    if (magiaScript.playerHealth.currentMana < custo)
-    {
-        Debug.Log("Mana insuficiente para lançar a magia.");
-        return;
-    }
-
-    // Gasta mana
-    magiaScript.playerHealth.UseMana(custo);
-    Debug.Log($"Usou magia {magiaScript.currentMagiaIndex}, custo: {custo}. Mana restante: {magiaScript.playerHealth.currentMana}");
-
-    // Animação e disparo
-    animator.Play("dispararPoder", 0, 0f);
-    GameObject proj = Instantiate(prefab, shootPoint.position, shootPoint.rotation);
-
-    Magia magia = proj.GetComponent<Magia>();
-    if (magia != null)
-    {
-        float direction = transform.localScale.x > 0 ? 1f : -1f;
-        magia.direcao = new Vector2(direction, 0f);
-        magia.velocidade = projectileSpeed;
-
-        Vector3 escala = proj.transform.localScale;
-        escala.x = Mathf.Abs(escala.x) * direction;
-        proj.transform.localScale = escala;
-    }
-    else
-    {
-        Debug.LogWarning("Prefab da magia não possui o componente Magia.");
-    }
-}
 
 
     // Novo método para aplicar lentidão cumulativa
@@ -270,14 +270,89 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene("SalaJantar");
         }
-        if (other.CompareTag("portaTeste"))
+        if (other.CompareTag("EscadaDireita"))
         {
-            SceneManager.LoadScene("SalaBoss");
+            SceneManager.LoadScene("Corredor1");
+        }
+         if (other.CompareTag("EscadaEsquerda"))
+        {
+            SceneManager.LoadScene("Corredor3");
+        }
+         if (other.CompareTag("Salao"))
+        {
+            SceneManager.LoadScene("Game");
         }
         if (other.CompareTag("portaHall"))
         {
             SceneManager.LoadScene("Game");
         }
+        if (other.CompareTag("Porta1C"))
+        {
+            SceneManager.LoadScene("PortaCorredor1");
+        }
+        if (other.CompareTag("Porta2C"))
+        {
+            SceneManager.LoadScene("PortaCorredor2");
+
+        }
+        if (other.CompareTag("Porta3C"))
+        {
+            SceneManager.LoadScene("PUZZLE2Stones");
+        }
+
+         if (other.CompareTag("Porta1C1"))
+        {
+            SceneManager.LoadScene("PortaCorredor1C1");
+        }
+        if (other.CompareTag("Porta2C1"))
+        {
+            SceneManager.LoadScene("PUZZLE1Stones");
+
+        }
+        if (other.CompareTag("Porta3C1"))
+        {
+            SceneManager.LoadScene("PortaCorredor2C1");
+        }
+
+
+
+
+         if (other.CompareTag("Porta2C3"))
+        {
+            SceneManager.LoadScene("PUZZLE2Circuitos");
+        }
+
+          if (other.CompareTag("Porta1C3"))
+        {
+            SceneManager.LoadScene("PortaCorredor2 3");
+        }
+
+        if (other.CompareTag("Porta3C3"))
+        {
+            SceneManager.LoadScene("PortaCorredor1 3");
+        }
+
+         if (other.CompareTag("Porta1C4"))
+        {
+            SceneManager.LoadScene("PUZZLE1Circuitos");
+        }
+
+        if (other.gameObject.activeInHierarchy && other.CompareTag("PortalCorredor1"))
+        {
+            SceneManager.LoadScene("Corredor");
+        }
+
+        if (other.gameObject.activeInHierarchy && other.CompareTag("PortalCorredor1C1"))
+        {
+            SceneManager.LoadScene("Corredor1");
+        }
+
+        if (other.gameObject.activeInHierarchy && other.CompareTag("PortalCorredor3C1"))
+        {
+            SceneManager.LoadScene("Corredor3");
+        }
+        
+
         if (other.CompareTag("portal-principal"))
         {
             if (ContadorManager.instance.PodeEntrarNoPortal())
@@ -295,7 +370,7 @@ public class PlayerMovement : MonoBehaviour
             if (!DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
             {
                 MostrarCarta();
-            } 
+            }
 
         }
         if (other.CompareTag("comoda"))

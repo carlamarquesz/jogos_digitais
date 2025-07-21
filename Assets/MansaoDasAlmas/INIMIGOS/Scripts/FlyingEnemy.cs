@@ -24,7 +24,14 @@ public class FlyingEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
-        rb.freezeRotation = true; // Garante que ele não gire
+
+        // Setar player automaticamente se não estiver definido
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null) player = playerObj.transform;
+        }
+
         startPos = transform.position;
     }
 
@@ -55,7 +62,8 @@ public class FlyingEnemy : MonoBehaviour
         // Movimento flutuante + aproximação do jogador
         Vector3 hover = new Vector3(0f, Mathf.Sin(Time.time * hoverSpeed) * hoverAmplitude, 0f);
         Vector2 direction = (player.position - transform.position).normalized;
-        Vector2 velocity = (direction * moveSpeed) + (Vector2)(hover);
+        Vector2 velocity = (direction * moveSpeed) + (Vector2)hover;
+
         rb.linearVelocity = velocity;
     }
 

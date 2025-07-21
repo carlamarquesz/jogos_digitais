@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 7326847773803723909}
   - component: {fileID: 3996485958230299482}
   - component: {fileID: 8064606716498277857}
+  - component: {fileID: 3715779551918065829}
   m_Layer: 0
   m_Name: Inimigo
   m_TagString: Enemy
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3805910206916320347}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -202,7 +203,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3805910206916320347}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -249,6 +250,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad383f40fbbb294c99468948f3db05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidadeOriginal: 1
+  velocidadeAtual: 0
+  estaLento: 0
+--- !u!114 &3715779551918065829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3805910206916320347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f6450b08ef06a4c81b8ce4944c9236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomController: {fileID: 0}
 --- !u!1 &4865504361046471535
 GameObject:
   m_ObjectHideFlags: 0

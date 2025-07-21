@@ -58,10 +58,23 @@ public class EnemyHealth : MonoBehaviour
         isSlowed = false;
     }
 
-    void Die()
+   void Die()
+{
+    Debug.Log("Inimigo morreu!");
+
+    // Notifica o RoomController, se tiver o script EnemyDeath
+    EnemyDeath deathScript = GetComponent<EnemyDeath>();
+    if (deathScript != null)
     {
-        Debug.Log("Inimigo morreu!");
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        deathScript.Die(); // isso chama o RegisterKill() no RoomController e destrói o inimigo
     }
+    else
+    {
+        Destroy(gameObject); // fallback
+    }
+
+    if (explosionPrefab != null)
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+}
+
 }

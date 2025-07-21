@@ -3,25 +3,27 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("ConfiguraÁ„o do Spawner")]
-    public GameObject enemyPrefab;
+    [Header("Pontos de Spawn")]
+    public Transform[] spawnPoints;
 
-    [Tooltip("Intervalo inicial entre os spawns (em segundos)")]
+    [Header("Prefabs dos inimigos")]
+    public GameObject[] enemyPrefabs;
+
+    [Header("Configura√ß√£o de Spawn")]
     public float initialInterval = 10f;
-
-    [Tooltip("Intervalo mais r·pido apÛs os 30s")]
     public float fasterInterval = 5f;
-
-    [Tooltip("Tempo em segundos atÈ acelerar")]
     public float timeToSpeedUp = 30f;
-
-    [Tooltip("N˙mero m·ximo de inimigos ativos ao mesmo tempo")]
     public int maxEnemies = 10;
-    [SerializeField] private float minY = -2f;
-    [SerializeField] private float maxY = 2f;
+
+    private Transform player;
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player")?.transform;
+        if (player == null)
+        {
+            Debug.LogWarning("Player n√£o encontrado na cena! Certifique-se que ele tenha a tag 'Player'.");
+        }
         StartCoroutine(SpawnRoutine());
     }
 
@@ -37,30 +39,33 @@ public class EnemySpawner : MonoBehaviour
             {
                 SpawnEnemy();
             }
+
             yield return new WaitForSeconds(currentInterval);
             timer += currentInterval;
         }
     }
 
     void SpawnEnemy()
-    { 
-        bool spawnRight = Random.value > 0.5f; 
-        float yRandom = Random.Range(minY, maxY); 
-        Vector3 spawnPos = spawnRight
-            ? new Vector3(Camera.main.transform.position.x + 10f, yRandom, 0f)
-            : new Vector3(Camera.main.transform.position.x - 10f, yRandom, 0f);
+    {
+        if (spawnPoints.Length == 0 || enemyPrefabs.Length == 0)
+        {
+            Debug.LogWarning("SpawnPoints ou EnemyPrefabs n√£o definidos!");
+            return;
+        }
 
-        GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
 
         EnemyController controller = enemy.GetComponent<EnemyController>();
-        if (controller != null && GameObject.FindWithTag("Player") != null)
+        if (controller != null && player != null)
         {
-            controller.player = GameObject.FindWithTag("Player").transform;
-            controller.SetDirection(spawnRight ? -1f : 1f);
+            controller.player = player;
+            float direction = (enemy.transform.position.x > player.position.x) ? -1f : 1f;
+            controller.SetDirection(direction);
         }
     }
-
-
 
     int CountActiveEnemies()
     {
