@@ -52,8 +52,10 @@ public class PiperGameManager2 : MonoBehaviour
         if (!venceu && correctedPipes == totalPipes)
         {
             venceu = true;
+            ContadorManager.instance.IncrementarItens();
             Debug.Log("✅ Todos os encaixes foram colocados corretamente!");
             SceneManager.LoadScene(cenaProxima);
+            
         }
     }
 

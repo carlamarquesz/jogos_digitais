@@ -47,6 +47,7 @@ public class WinScript1 : MonoBehaviour
     void WinGame()
     {
         Debug.Log("Você venceu o jogo! Parabéns!");
+        ContadorManager.instance.IncrementarItens();
         SceneManager.LoadScene("Corredor");
     }
 }

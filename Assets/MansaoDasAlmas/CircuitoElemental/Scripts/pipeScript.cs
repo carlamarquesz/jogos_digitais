@@ -13,7 +13,11 @@ public class pipeScript : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<PiperGameManager>();
+        gameManager = FindObjectOfType<PiperGameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("PiperGameManager não encontrado na cena! Verifique se existe um objeto com esse script ativo.");
+        }
     }
 
     private void Start()
@@ -24,8 +28,11 @@ public class pipeScript : MonoBehaviour
         if (IsAnyRotationCorrect(transform.eulerAngles.z))
         {
             isPlaced = true;
-            gameManager.correctMove();
-            Debug.Log("Pipe placed correctly at start!");
+            if (gameManager != null)
+            {
+                gameManager.correctMove();
+                Debug.Log("Pipe colocado corretamente no início!");
+            }
         }
     }
 
@@ -39,18 +46,23 @@ public class pipeScript : MonoBehaviour
         if (nowCorrect && !isPlaced)
         {
             isPlaced = true;
-            gameManager.correctMove();
-            Debug.Log("correto!");
+            if (gameManager != null)
+            {
+                gameManager.correctMove();
+            }
+            Debug.Log("Correto!");
         }
         else if (!nowCorrect && isPlaced)
         {
             isPlaced = false;
-            gameManager.incorrectMove();
-            Debug.Log("errado.");
+            if (gameManager != null)
+            {
+                gameManager.incorrectMove();
+            }
+            Debug.Log("Errado.");
         }
     }
 
-    // Função pública para informar se está colocado corretamente
     public bool IsPlaced()
     {
         return isPlaced;

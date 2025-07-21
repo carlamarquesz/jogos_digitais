@@ -2,20 +2,43 @@ using UnityEngine;
 
 public class ContadorManager : MonoBehaviour
 {
-    public static ContadorManager instance;
+    private static ContadorManager _instance;
+
+    public static ContadorManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                // Tenta encontrar na cena
+                _instance = FindObjectOfType<ContadorManager>();
+
+                if (_instance == null)
+                {
+                    // Cria novo GameObject com o script
+                    GameObject singletonObj = new GameObject("ContadorManager");
+                    _instance = singletonObj.AddComponent<ContadorManager>();
+                    Debug.Log("ContadorManager criado automaticamente.");
+                }
+
+                DontDestroyOnLoad(_instance.gameObject);
+            }
+            return _instance;
+        }
+    }
 
     public int itensEncontrados = 0;
 
-    void Awake()
+    private void Awake()
     {
-        if (instance != null && instance != this)
+        if (_instance != null && _instance != this)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
             return;
         }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject); 
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public bool PodeEntrarNoPortal()
