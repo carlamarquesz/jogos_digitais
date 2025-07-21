@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement; 
 
-public class MonstroInicial : MonoBehaviour
+public class DialogoBoss : MonoBehaviour
 {
     public GameObject prefabMonstro;
     public Transform spawnPosition;
@@ -18,15 +19,32 @@ public class MonstroInicial : MonoBehaviour
 
     private static bool monstroJaApareceu = false;
 
-    private List<string> falas = new List<string>
+    public TextMeshProUGUI nomePersonagem;
+
+
+    [System.Serializable]
+    public class Fala
     {
-        "Seu poder... vocÃª nÃ£o Ã© nada sem ele, mago patÃ©tico.",
-        "Espalhei suas relÃ­quias por esta mansÃ£o amaldiÃ§oada. Cada cÃ´modo guarda um fragmento do que vocÃª era.",
-        "Se quiser entrar no salÃ£o principal e encontrar a garota... terÃ¡ que procurar seus itens por cada canto escuro deste lugar."
-    };
+        public string nome;
+        public string texto;
+    }
+    public List<Fala> falas = new List<Fala>();
+
 
     void Start()
     {
+        falas = new List<Fala>
+        {
+            new Fala { nome = "Desconhecido", texto = "Você chegou... mas já é tarde demais." },
+            new Fala { nome = "Whisper", texto = "O que você fez com ela?!" },
+            new Fala { nome = "Desconhecido", texto = "Ela me convidou. Abriu as portas da alma... e eu entrei." },
+            new Fala { nome = "Whisper", texto = "Ela é só uma criança! Você a envenenou com sua escuridão!" },
+            new Fala { nome = "Desconhecido", texto = "Eu apenas mostrei o que já estava dentro dela..." },
+            new Fala { nome = "Menina", texto = "Alguém...? Está escuro aqui... estou com medo..." },
+            new Fala { nome = "Whisper", texto = "Lute! Não deixe ele controlar quem você é!" },
+            new Fala { nome = "Desconhecido", texto = "Quer libertá-la? Derrote-me, e talvez ela volte." },
+            new Fala { nome = "Whisper", texto = "Eu juro... vou arrancar essa sombra de dentro dela, nem que eu queime junto." }
+        };
         if (!monstroJaApareceu)
         {
             StartCoroutine(ApagarMonstro());
@@ -40,7 +58,7 @@ public class MonstroInicial : MonoBehaviour
 
     IEnumerator ApagarMonstro()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(1f); 
 
         monstroInstanciado = Instantiate(prefabMonstro, spawnPosition.position, Quaternion.identity);
 
@@ -57,9 +75,25 @@ public class MonstroInicial : MonoBehaviour
     {
         if (falaAtual < falas.Count)
         {
-            textoDialogo.text = falas[falaAtual];
+            Debug.Log($"Exibindo fala: {falas[falaAtual].nome}: {falas[falaAtual].texto}");
+
+            switch (falas[falaAtual].nome)
+            {
+                case "Desconhecido":
+                    nomePersonagem.text = $"<color=#FF0000>{falas[falaAtual].nome}</color>";
+                    break;
+                case "Garota":
+                    nomePersonagem.text = $"<color=#ddb892>{falas[falaAtual].nome}</color>";
+                    break;
+                default:
+                    nomePersonagem.text = falas[falaAtual].nome;
+                    break;
+            }
+
+            textoDialogo.text = falas[falaAtual].texto;
         }
     }
+
 
     void ProximaFala()
     {
@@ -75,7 +109,7 @@ public class MonstroInicial : MonoBehaviour
         }
         else
         {
-            FecharCanvas();
+            StartCoroutine(FecharCanvasETrocarCena());
         }
     }
 
@@ -109,7 +143,7 @@ public class MonstroInicial : MonoBehaviour
         MostrarFala();
     }
 
-    void FecharCanvas()
+    IEnumerator FecharCanvasETrocarCena()
     {
         canvasMonstro.SetActive(false);
         Time.timeScale = 1f;
@@ -118,5 +152,11 @@ public class MonstroInicial : MonoBehaviour
         {
             Destroy(monstroInstanciado);
         }
+        DialogosManager.instance.MarcarDialogoComoConcluido("dialogo_boss_ritual");
+
+
+        yield return new WaitForSeconds(1f); 
+
+        SceneManager.LoadScene("SalaBoss"); 
     }
 }

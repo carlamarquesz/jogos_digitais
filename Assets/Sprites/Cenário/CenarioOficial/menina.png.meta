@@ -1,0 +1,1196 @@
+fileFormatVersion: 2
+guid: ccb961156d90e5d4384671d8f94ae374
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2553499313061385178
+    second: menina_0
+  - first:
+      213: -8421188824404501940
+    second: menina_1
+  - first:
+      213: 1462139458626869698
+    second: menina_2
+  - first:
+      213: 2826269245897192360
+    second: menina_3
+  - first:
+      213: 5667885726006392942
+    second: menina_4
+  - first:
+      213: -2696279637174329115
+    second: menina_5
+  - first:
+      213: -4465395975173747749
+    second: menina_6
+  - first:
+      213: 7115530984702692844
+    second: menina_7
+  - first:
+      213: -4789065880743922293
+    second: menina_8
+  - first:
+      213: -3331465158976386038
+    second: menina_9
+  - first:
+      213: -4564438243030283851
+    second: menina_10
+  - first:
+      213: 4574926727488464011
+    second: menina_11
+  - first:
+      213: -5867214021949690096
+    second: menina_12
+  - first:
+      213: -7101175958412185434
+    second: menina_13
+  - first:
+      213: 270731106834386664
+    second: menina_14
+  - first:
+      213: 4704407013535962008
+    second: menina_15
+  - first:
+      213: 7555647108458350293
+    second: menina_16
+  - first:
+      213: -905323640923838938
+    second: menina_17
+  - first:
+      213: -1218101156719921403
+    second: menina_18
+  - first:
+      213: 4129473662709298983
+    second: menina_19
+  - first:
+      213: 1692699816964087991
+    second: menina_20
+  - first:
+      213: -9158460051690989336
+    second: menina_21
+  - first:
+      213: 5040355864633250669
+    second: menina_22
+  - first:
+      213: 3159526166604664816
+    second: menina_23
+  - first:
+      213: 4044311314446504476
+    second: menina_24
+  - first:
+      213: 131720363794829218
+    second: menina_25
+  - first:
+      213: -1170190706448185577
+    second: menina_26
+  - first:
+      213: 4854643417938309838
+    second: menina_27
+  - first:
+      213: 6540705787974725876
+    second: menina_28
+  - first:
+      213: -8826109234013355848
+    second: menina_29
+  - first:
+      213: -4597358247964243693
+    second: menina_30
+  - first:
+      213: -8463532232548983839
+    second: menina_31
+  - first:
+      213: 5720566122481036257
+    second: menina_32
+  - first:
+      213: -5705010707003634111
+    second: menina_33
+  - first:
+      213: 8242433663420072138
+    second: menina_34
+  - first:
+      213: 2023556363931542535
+    second: menina_35
+  - first:
+      213: -2131579266851914790
+    second: menina_36
+  - first:
+      213: -7635579079153221374
+    second: menina_37
+  - first:
+      213: -2438737308726732622
+    second: menina_38
+  - first:
+      213: 6028486227328876743
+    second: menina_39
+  - first:
+      213: 3421035097074927835
+    second: menina_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: menina_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1138
+        width: 281
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62ca5ce57e5209cd0800000000000000
+      internalID: -2553499313061385178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_1
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 1135
+        width: 231
+        height: 396
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4a51eea16de12b80800000000000000
+      internalID: -8421188824404501940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_2
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 1104
+        width: 212
+        height: 427
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c9598347109a4410800000000000000
+      internalID: 1462139458626869698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_3
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 700
+        width: 322
+        height: 831
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a33059a7ece83720800000000000000
+      internalID: 2826269245897192360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_4
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 1402
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e683e1eb90068ae40800000000000000
+      internalID: 5667885726006392942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_5
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1353
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e0ea1b94f3e49ad0800000000000000
+      internalID: -2696279637174329115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_6
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 1353
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdb4f4ee40ab702c0800000000000000
+      internalID: -4465395975173747749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_7
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 1353
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced4d7b1bb17fb260800000000000000
+      internalID: 7115530984702692844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_8
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 1352
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b85b05c74f1d98db0800000000000000
+      internalID: -4789065880743922293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_9
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 1353
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0c4f99b61244c1d0800000000000000
+      internalID: -3331465158976386038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_10
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 1353
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b9c8f4f99bd7a0c0800000000000000
+      internalID: -4564438243030283851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_11
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 1353
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b84e361ae976d7f30800000000000000
+      internalID: 4574926727488464011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_12
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 1353
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01f6f70dee7739ea0800000000000000
+      internalID: -5867214021949690096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_13
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1354
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a03c47e61e837d90800000000000000
+      internalID: -7101175958412185434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_14
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 1353
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ee038cd184d1c300800000000000000
+      internalID: 270731106834386664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_15
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 1353
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 893daa8f049694140800000000000000
+      internalID: 4704407013535962008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_16
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 1354
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d60edb730d0bd860800000000000000
+      internalID: 7555647108458350293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_17
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 1353
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 626a8f7f1f4af63f0800000000000000
+      internalID: -905323640923838938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_18
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 1353
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5077735a37f681fe0800000000000000
+      internalID: -1218101156719921403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_19
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 1353
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7277e17da66de4930800000000000000
+      internalID: 4129473662709298983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_20
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 1353
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b06385e38dad7710800000000000000
+      internalID: 1692699816964087991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_21
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 1353
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e85a594b1d96e080800000000000000
+      internalID: -9158460051690989336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_22
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 1258
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d63950534f0f2f540800000000000000
+      internalID: 5040355864633250669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_23
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 1259
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ffc5030f44e8db20800000000000000
+      internalID: 3159526166604664816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 415
+        width: 294
+        height: 394
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c125daa76b7402830800000000000000
+      internalID: 4044311314446504476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_25
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 836
+        width: 272
+        height: 285
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2af0da519f6f3d100800000000000000
+      internalID: 131720363794829218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_26
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 801
+        width: 243
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71741be90c5a2cfe0800000000000000
+      internalID: -1170190706448185577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_27
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 836
+        width: 192
+        height: 286
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec2b665b7782f5340800000000000000
+      internalID: 4854643417938309838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_28
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 806
+        width: 207
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f03390924145ca50800000000000000
+      internalID: 6540705787974725876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_29
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 489
+        width: 194
+        height: 304
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b0c6d51a6c538580800000000000000
+      internalID: -8826109234013355848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_30
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 487
+        width: 232
+        height: 318
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31901e40807e230c0800000000000000
+      internalID: -4597358247964243693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_31
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 393
+        width: 307
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eb59d5b64e7b8a80800000000000000
+      internalID: -8463532232548983839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 286
+        height: 471
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ebad9c5498836f40800000000000000
+      internalID: 5720566122481036257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_33
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 8
+        width: 222
+        height: 465
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14e8f390dfab3d0b0800000000000000
+      internalID: -5705010707003634111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_34
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 0
+        width: 226
+        height: 473
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac000e02fb1036270800000000000000
+      internalID: 8242433663420072138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_35
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 0
+        width: 374
+        height: 473
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704ee1faacd151c10800000000000000
+      internalID: 2023556363931542535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_36
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 415
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adb34bc43fb1b62e0800000000000000
+      internalID: -2131579266851914790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_37
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 415
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2010ba45849f80690800000000000000
+      internalID: -7635579079153221374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_38
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 107
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b8d9d4b65dd72ed0800000000000000
+      internalID: -2438737308726732622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_39
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 82
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c0c541984c79a350800000000000000
+      internalID: 6028486227328876743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menina_40
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 82
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd88b4d9b45f97f20800000000000000
+      internalID: 3421035097074927835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e9e80706ab5b08145897a9132311532b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      menina_0: -2553499313061385178
+      menina_1: -8421188824404501940
+      menina_10: -4564438243030283851
+      menina_11: 4574926727488464011
+      menina_12: -5867214021949690096
+      menina_13: -7101175958412185434
+      menina_14: 270731106834386664
+      menina_15: 4704407013535962008
+      menina_16: 7555647108458350293
+      menina_17: -905323640923838938
+      menina_18: -1218101156719921403
+      menina_19: 4129473662709298983
+      menina_2: 1462139458626869698
+      menina_20: 1692699816964087991
+      menina_21: -9158460051690989336
+      menina_22: 5040355864633250669
+      menina_23: 3159526166604664816
+      menina_24: 4044311314446504476
+      menina_25: 131720363794829218
+      menina_26: -1170190706448185577
+      menina_27: 4854643417938309838
+      menina_28: 6540705787974725876
+      menina_29: -8826109234013355848
+      menina_3: 2826269245897192360
+      menina_30: -4597358247964243693
+      menina_31: -8463532232548983839
+      menina_32: 5720566122481036257
+      menina_33: -5705010707003634111
+      menina_34: 8242433663420072138
+      menina_35: 2023556363931542535
+      menina_36: -2131579266851914790
+      menina_37: -7635579079153221374
+      menina_38: -2438737308726732622
+      menina_39: 6028486227328876743
+      menina_4: 5667885726006392942
+      menina_40: 3421035097074927835
+      menina_5: -2696279637174329115
+      menina_6: -4465395975173747749
+      menina_7: 7115530984702692844
+      menina_8: -4789065880743922293
+      menina_9: -3331465158976386038
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

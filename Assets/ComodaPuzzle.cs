@@ -33,6 +33,7 @@ public class ComodaPuzzle : MonoBehaviour
         {
             ComodaPuzzle.comodaDestravada = true;
             canvasCarta.SetActive(false);
+            ContadorManager.instance.IncrementarItens();
             MostrarMensagem("A cômoda foi destravada com sucesso!");
         }
         else
