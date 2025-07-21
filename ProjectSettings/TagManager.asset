@@ -14,6 +14,8 @@ TagManager:
   - comoda
   - Boss
   - portaTeste
+  - Magic
+  - BossMagic
   layers:
   - Default
   - TransparentFX

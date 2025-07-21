@@ -8,14 +8,14 @@ public class DialogoManager : MonoBehaviour
     public GameObject canvasDialogo;  
     public Button botaoContinuar;
 
-    private static bool dialogoMostrado = false; // variável estática para controlar execução única
+    private static bool dialogoMostrado = false; 
 
     private void Start()
     {
         if (!dialogoMostrado && SceneManager.GetActiveScene().name == "Game")
         {
             StartCoroutine(MostrarDialogo());
-            dialogoMostrado = true;  // marca como mostrado
+            dialogoMostrado = true;  
         }
     }
 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2796918676262c443a69d9f8151e1684
+guid: 4b6b079b5364b054b8703d290d1fd3b5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2436759946013824715
-    second: ChatGPT Image 16_07_2025, 18_34_21_0
+      213: 3842093119432564640
+    second: sala_misteriosa_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image 16_07_2025, 18_34_21_0
+      name: sala_misteriosa_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1536
-        height: 1024
+        width: 756
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 53922f65db3ee2ed0800000000000000
-      internalID: -2436759946013824715
+      spriteID: 0af10c9f55bd15530800000000000000
+      internalID: 3842093119432564640
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ChatGPT Image 16_07_2025, 18_34_21_0: -2436759946013824715
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

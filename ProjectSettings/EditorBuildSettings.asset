@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MansaoDasAlmas/Scenes/SalaBoss.unity
     guid: 0b531e51903b6be458c9164c217574a8
+  - enabled: 1
+    path: Assets/MansaoDasAlmas/Scenes/Ritual.unity
+    guid: f4dd08117eaa6f34a8b30117b8be47cf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 5e716bb9195b9eb49a2ccb4c51691dc6,
       type: 3}

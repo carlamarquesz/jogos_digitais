@@ -280,17 +280,39 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.CompareTag("portal-principal"))
         {
-            MostrarAvisoPortao();
+            if (ContadorManager.instance.PodeEntrarNoPortal())
+            {
+                SceneManager.LoadScene("Ritual");
+            }
+            else
+            {
+                MostrarAvisoPortao();
+
+            }
         }
         if (other.CompareTag("carta"))
         {
-            MostrarCarta();
+            if (!DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
+            {
+                MostrarCarta();
+            } 
+
         }
         if (other.CompareTag("comoda"))
         {
+
             if (ComodaPuzzle.comodaDestravada)
             {
-                StartCoroutine(RevelarItemComFade());
+                if (DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
+                {
+                    ComodaPuzzle.instance.MostrarMensagem("Você já capturou o item.");
+                }
+                else
+                {
+                    StartCoroutine(RevelarItemComFade());
+                    DialogosManager.instance.MarcarDialogoComoConcluido("dialogo_sala_jantar");
+
+                }
             }
             else
             {
