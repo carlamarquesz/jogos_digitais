@@ -3,22 +3,20 @@ using UnityEngine.UI;
 
 public class BossHealthBarUI : MonoBehaviour
 {
-    public Slider barraDeVida;
+    public Image fillImage;  // Referência para o Image do Fill
+    private int maxHealth;
 
     public void SetMaxHealth(int max)
     {
-        if (barraDeVida != null)
-        {
-            barraDeVida.maxValue = max;
-            barraDeVida.value = max;
-        }
+        maxHealth = max;
+        SetHealth(max);
     }
 
-    public void SetHealth(int health)
+    public void SetHealth(int currentHealth)
     {
-        if (barraDeVida != null)
+        if (fillImage != null && maxHealth > 0)
         {
-            barraDeVida.value = health;
+            fillImage.fillAmount = (float)currentHealth / maxHealth;
         }
     }
 }

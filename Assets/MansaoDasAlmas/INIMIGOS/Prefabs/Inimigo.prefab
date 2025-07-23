@@ -144,7 +144,7 @@ MonoBehaviour:
     type: 3}
   shootPoint: {fileID: 5066170897800069510}
   center: {fileID: 5066170897800069510}
-  player: {fileID: 0}
+  player: {fileID: 8196966316482584922, guid: c4b7ccfcfad33d24aa007db5cde6286f, type: 3}
   moveSpeed: 1
   shootIntervalMin: 1
   shootIntervalMax: 3

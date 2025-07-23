@@ -12,6 +12,7 @@ public class Magia : MonoBehaviour
     private AudioSource audioSource;
 
     private Rigidbody2D rb;
+    private bool jaCausouDano = false;  // Flag para evitar múltiplos danos
 
     void Start()
     {
@@ -30,6 +31,9 @@ public class Magia : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (jaCausouDano)
+            return;  // Já causou dano, ignora colisões futuras
+
         if (other.CompareTag("Enemy") || other.CompareTag("Boss"))
         {
             // --- CHECAR ENEMY NORMAL ---
@@ -48,11 +52,13 @@ public class Magia : MonoBehaviour
                 if (vulnerabilidade != null && !vulnerabilidade.EhVulneravelA(tipoMagia))
                 {
                     Debug.Log("Magia bloqueada pelo inimigo!");
+                    jaCausouDano = true;
                     Destroy(gameObject);
                     return;
                 }
 
                 vidaEnemy.TakeDamage(tipoMagia);
+                jaCausouDano = true;
                 Destroy(gameObject);
                 return;
             }
@@ -62,15 +68,19 @@ public class Magia : MonoBehaviour
             if (bossHealth != null)
             {
                 bossHealth.TakeDamage(tipoMagia);
+                jaCausouDano = true;
                 Destroy(gameObject);
                 return;
             }
 
             // Se chegou até aqui, destrua de qualquer forma
+            jaCausouDano = true;
             Destroy(gameObject);
         }
         else
         {
+            // Colidiu com algo que não é inimigo nem boss, destruir
+            jaCausouDano = true;
             Destroy(gameObject);
         }
     }

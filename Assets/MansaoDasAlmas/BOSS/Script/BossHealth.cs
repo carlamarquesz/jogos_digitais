@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;  // Import necessário para carregar cenas
 using System.Collections;
 
 public class BossHealth : MonoBehaviour
@@ -81,6 +82,10 @@ public class BossHealth : MonoBehaviour
         Debug.Log("Boss morreu!");
         if (explosionPrefab != null)
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        // Carrega a cena final
+        SceneManager.LoadScene("CenaFinal"); // Substitua "CenaFinal" pelo nome da sua cena
+
         Destroy(gameObject);
     }
 }

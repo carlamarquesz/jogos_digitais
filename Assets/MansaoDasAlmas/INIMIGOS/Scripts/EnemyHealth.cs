@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections;  // <-- importante para IEnumerator
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -7,74 +7,82 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     public GameObject explosionPrefab;
     private bool isSlowed = false;
-    private float originalSpeed = 1f; // define ou vincule à velocidade real do inimigo
+    private float originalSpeed = 1f;
     private float slowedSpeed = 0.4f;
+
+    private PlayerMovement playerMovement;
+    private bool morreu = false;  // FLAG para evitar múltiplas mortes
 
     void Start()
     {
         currentHealth = maxHealth;
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            playerMovement = playerObj.GetComponent<PlayerMovement>();
+        }
     }
 
-   public void TakeDamage(MagicType magicType)
-{
-    int damage = 1;
-
-    switch (magicType)
+    public void TakeDamage(MagicType magicType)
     {
-        case MagicType.Fire:
-            damage = 3;
-            break;
-        case MagicType.Ice:
-            damage = 2;
-            if (!isSlowed) StartCoroutine(ApplySlowEffect());
-            break;
-        case MagicType.Darkness:
-            damage = 1;
-            break;
+        if (morreu) return;  // Ignora dano após morte
+
+        int damage = 1;
+
+        switch (magicType)
+        {
+            case MagicType.Fire:
+                damage = 3;
+                break;
+            case MagicType.Ice:
+                damage = 2;
+                if (!isSlowed) StartCoroutine(ApplySlowEffect());
+                break;
+            case MagicType.Darkness:
+                damage = 1;
+                break;
+        }
+
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (currentHealth <= 0)
+            Die();
     }
-
-    currentHealth -= damage;
-    currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
-    if (currentHealth <= 0)
-        Die();
-}
-
 
     IEnumerator ApplySlowEffect()
     {
         isSlowed = true;
-
-        // Exemplo: se você tiver um script de movimento, diminua a velocidade lá.
-        // Ex: GetComponent<EnemyMovement>().speed = slowedSpeed;
         Debug.Log("Inimigo desacelerado!");
-
         yield return new WaitForSeconds(2f);
-
-        // Restaurar velocidade
-        // Ex: GetComponent<EnemyMovement>().speed = originalSpeed;
         Debug.Log("Inimigo voltou à velocidade normal.");
-
         isSlowed = false;
     }
 
-   void Die()
-{
-    Debug.Log("Inimigo morreu!");
-
-    // Notifica o RoomController, se tiver o script EnemyDeath
-    EnemyDeath deathScript = GetComponent<EnemyDeath>();
-    if (deathScript != null)
+    void Die()
     {
-        deathScript.Die(); // isso chama o RegisterKill() no RoomController e destrói o inimigo
-    }
-    else
-    {
-        Destroy(gameObject); // fallback
-    }
+        if (morreu) return; // Evita executar múltiplas vezes
+        morreu = true;
 
-    if (explosionPrefab != null)
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-}
+        Debug.Log("Inimigo morreu!");
 
+        if (playerMovement != null)
+        {
+            playerMovement.MonstroDerrotado();
+        }
+
+        EnemyDeath deathScript = GetComponent<EnemyDeath>();
+        if (deathScript != null)
+        {
+            deathScript.Die();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        if (explosionPrefab != null)
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+    }
 }

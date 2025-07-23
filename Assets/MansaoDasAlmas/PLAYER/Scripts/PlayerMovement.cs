@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,18 +11,18 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 2f;
 
-    public MagiaScript magiaScript; // Referência no inspector para o controlador de magias
+    public MagiaScript magiaScript;
 
     private float originalSpeed;
     private int slowHits = 0;
     private float slowTimer = 0f;
-    private float slowDuration = 2f; // duração fixa da lentidão
+    private float slowDuration = 2f;
 
     private Animator animator;
     private Rigidbody2D rb;
     private PlayerControls controls;
     public ParticleSystem rocketFlame;
-    private bool avisoMostrado = false; // <-- REFERENCIA PARA A CENA DO CHEFÃO
+    private bool avisoMostrado = false;
 
     public Transform shootPoint;
     public Transform enemy;
@@ -37,33 +38,45 @@ public class PlayerMovement : MonoBehaviour
     public GameObject canvasCarta;
     public Button botaoFecharCarta;
 
-    public Image encontrouItemImage;       // A imagem que dá fade
-    public CanvasGroup encontrouCanvasGroup; // Requer componente CanvasGroup no objeto
+    public Image encontrouItemImage;
+    public CanvasGroup encontrouCanvasGroup;
+    public MonstroInicial monstroInicialScript; // arraste no Inspector
+    private int monstrosDerrotados = 0;
+    public int monstrosParaDialogo = 5;  // Quantos monstros derrotar para o diálogo aparecer
     public GameObject canvasDialogo;
     public TMP_Text dialogoTexto;
     public Button botaoFecharDialogo;
 
-    public ComodaPuzzle puzzle; // arraste no Inspector
+    public ComodaPuzzle puzzle;
 
-    private GameObject CurrentMagiaPrefab
+    private Dictionary<string, string> portasComRestricao = new Dictionary<string, string>()
     {
-        get
-        {
-            if (magiaScript != null && magiaScript.magias.Length > 0)
-            {
-                return magiaScript.magias[magiaScript.currentMagiaIndex];
-            }
-            return null;
-        }
-    }
+        { "portaSala", "SalaJantar" },
+        { "EscadaDireita", "Corredor1" },
+        { "EscadaEsquerda", "Corredor3" },
+        { "Salao", "Game" },
+        { "portaHall", "Game" },
+        { "Porta1C", "PortaCorredor1" },
+        { "Porta2C", "PortaCorredor2" },
+        { "Porta3C", "PUZZLE2Stones" },
+        { "Porta1C1", "PortaCorredor1C1" },
+        { "Porta2C1", "PUZZLE1Stones" },
+        { "Porta3C1", "PortaCorredor2C1" },
+        { "Porta1C3", "PortaCorredor2 3" },
+        { "Porta2C3", "PUZZLE2Circuitos" },
+        { "Porta3C3", "PortaCorredor1 3" },
+        { "Porta1C4", "PUZZLE1Circuitos" },
+        { "PortalCorredor1", "Corredor" },
+        { "PortalCorredor1C1", "Corredor1" },
+        { "PortalCorredor3C1", "Corredor3" }
+    };
 
     private void Awake()
     {
         controls = new PlayerControls();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
-        originalSpeed = moveSpeed; // guarda velocidade original
+        originalSpeed = moveSpeed;
     }
 
     private void OnEnable()
@@ -90,13 +103,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // Controle do timer da lentidão
         if (slowTimer > 0)
         {
             slowTimer -= Time.deltaTime;
             if (slowTimer <= 0f)
             {
-                // Lentidão acabou, reseta tudo
                 moveSpeed = originalSpeed;
                 slowHits = 0;
                 slowTimer = 0;
@@ -109,12 +120,14 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("MoveX", input.x);
         animator.SetFloat("MoveY", input.y);
         Vector2 moveDirection = input.normalized * moveSpeed;
+
         if (isBoosting && input != Vector2.zero && GameManager.instance.TentarUsarBoost())
         {
             moveDirection += input.normalized * jumpForce;
         }
 
         rb.linearVelocity = moveDirection;
+
         var main = rocketFlame.main;
         float targetLifetime = (input == Vector2.zero && !isBoosting) ? 1f : 2f;
         if (main.startLifetime.constant != targetLifetime)
@@ -123,47 +136,27 @@ public class PlayerMovement : MonoBehaviour
             rocketFlame.Clear();
             rocketFlame.Play();
         }
+
         if (input.x > 0.1f)
-        {
-            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // Direita (normal)
-        }
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         else if (input.x < -0.1f)
-        {
-            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f); // Esquerda (espelhado)
-        }
+            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
     }
 
     private void Shoot()
     {
-        if (magiaScript == null)
-        {
-            Debug.LogWarning("MagiaScript não está atribuído no PlayerMovement.");
-            return;
-        }
+        if (magiaScript == null) return;
 
         GameObject prefab = magiaScript.magias[magiaScript.currentMagiaIndex];
-
-        if (prefab == null)
-        {
-            Debug.LogWarning("Nenhuma magia selecionada.");
-            return;
-        }
+        if (prefab == null) return;
 
         int custo = (magiaScript.custoManaPorMagia != null && magiaScript.currentMagiaIndex < magiaScript.custoManaPorMagia.Length)
                     ? magiaScript.custoManaPorMagia[magiaScript.currentMagiaIndex]
                     : 10;
 
-        if (magiaScript.playerHealth.currentMana < custo)
-        {
-            Debug.Log("Mana insuficiente para lançar a magia.");
-            return;
-        }
+        if (magiaScript.playerHealth.currentMana < custo) return;
 
-        // Gasta mana
         magiaScript.playerHealth.UseMana(custo);
-        Debug.Log($"Usou magia {magiaScript.currentMagiaIndex}, custo: {custo}. Mana restante: {magiaScript.playerHealth.currentMana}");
-
-        // Animação e disparo
         animator.Play("dispararPoder", 0, 0f);
         GameObject proj = Instantiate(prefab, shootPoint.position, shootPoint.rotation);
 
@@ -173,33 +166,76 @@ public class PlayerMovement : MonoBehaviour
             float direction = transform.localScale.x > 0 ? 1f : -1f;
             magia.direcao = new Vector2(direction, 0f);
             magia.velocidade = projectileSpeed;
-
             Vector3 escala = proj.transform.localScale;
             escala.x = Mathf.Abs(escala.x) * direction;
             proj.transform.localScale = escala;
         }
-        else
-        {
-            Debug.LogWarning("Prefab da magia não possui o componente Magia.");
-        }
     }
 
-
-    // Novo método para aplicar lentidão cumulativa
     public void ModifySpeedCumulative(float slowPercent, float duration)
     {
         slowHits++;
-
-        // Até 2 hits acumulam lentidão: 20% por hit, max 40%
         float effectiveMultiplier = 1f - Mathf.Min(slowHits, 2) * slowPercent;
-
         moveSpeed = originalSpeed * effectiveMultiplier;
-
-        // Reseta o timer para duração total
         slowTimer = duration;
     }
 
-    // Métodos de interface UI e triggers continuam iguais...
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        string tag = other.tag;
+
+        if (portasComRestricao.ContainsKey(tag))
+        {
+            if (MonstroInicial.dialogoFinalizado)
+            {
+                SceneManager.LoadScene(portasComRestricao[tag]);
+            }
+            else
+            {
+                MostrarAvisoDialogoNaoFinalizado();
+            }
+            return;
+        }
+
+        if (tag == "portal-principal")
+        {
+            if (ContadorManager.instance.PodeEntrarNoPortal())
+                SceneManager.LoadScene("Ritual");
+            else
+                MostrarAvisoPortao();
+        }
+
+        if (tag == "carta")
+        {
+            if (!DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
+                MostrarCarta();
+        }
+
+        if (tag == "comoda")
+        {
+            if (ComodaPuzzle.comodaDestravada)
+            {
+                if (DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
+                {
+                    ComodaPuzzle.instance.MostrarMensagem("Você já capturou o item.");
+                }
+                else
+                {
+                    StartCoroutine(RevelarItemComFade());
+                    DialogosManager.instance.MarcarDialogoComoConcluido("dialogo_sala_jantar");
+                }
+            }
+            else
+            {
+                ComodaPuzzle.instance.MostrarMensagem("A cômoda está trancada. Resolva o enigma primeiro.");
+            }
+        }
+
+        if (tag == "Enemy")
+        {
+            Debug.Log("Enemy hit!");
+        }
+    }
 
     private void MostrarAvisoPortao()
     {
@@ -219,7 +255,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Time.timeScale = 0f;
         canvasCarta.SetActive(true);
-
         botaoFecharCarta.onClick.RemoveAllListeners();
         botaoFecharCarta.onClick.AddListener(FecharCarta);
     }
@@ -228,6 +263,20 @@ public class PlayerMovement : MonoBehaviour
     {
         canvasCarta.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    private void MostrarAvisoDialogoNaoFinalizado()
+    {
+        Time.timeScale = 0f;
+        canvasDialogo.SetActive(true);
+        dialogoTexto.text = "Uma força sombria bloqueia seu caminho...";
+
+        botaoFecharDialogo.onClick.RemoveAllListeners();
+        botaoFecharDialogo.onClick.AddListener(() =>
+        {
+            canvasDialogo.SetActive(false);
+            Time.timeScale = 1f;
+        });
     }
 
     IEnumerator RevelarItemComFade()
@@ -259,141 +308,38 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 1f;
         });
     }
+ public void MonstroDerrotado()
+{
+    monstrosDerrotados++;
+    Debug.Log($"Monstro derrotado! Total: {monstrosDerrotados}");
 
-    private void OnTriggerEnter2D(Collider2D other)
+    if (monstrosDerrotados >= monstrosParaDialogo)
     {
-        if (other.CompareTag("Enemy"))
+        // Chama o diálogo do MonstroInicial
+        if (monstroInicialScript != null)
         {
-            Debug.Log("Enemy hit!");
+            monstroInicialScript.IniciarDialogo();
         }
-        if (other.CompareTag("portaSala"))
+        else
         {
-            SceneManager.LoadScene("SalaJantar");
+            Debug.LogWarning("MonstroInicial não está atribuído no PlayerMovement.");
         }
-        if (other.CompareTag("EscadaDireita"))
-        {
-            SceneManager.LoadScene("Corredor1");
-        }
-         if (other.CompareTag("EscadaEsquerda"))
-        {
-            SceneManager.LoadScene("Corredor3");
-        }
-         if (other.CompareTag("Salao"))
-        {
-            SceneManager.LoadScene("Game");
-        }
-        if (other.CompareTag("portaHall"))
-        {
-            SceneManager.LoadScene("Game");
-        }
-        if (other.CompareTag("Porta1C"))
-        {
-            SceneManager.LoadScene("PortaCorredor1");
-        }
-        if (other.CompareTag("Porta2C"))
-        {
-            SceneManager.LoadScene("PortaCorredor2");
+    }
+}
 
-        }
-        if (other.CompareTag("Porta3C"))
+    private void MostrarDialogoPosMonstros()
+    {
+        if (canvasDialogo.activeSelf) return;
+
+        Time.timeScale = 0f;
+        canvasDialogo.SetActive(true);
+        dialogoTexto.text = "Você derrotou monstros suficientes! O caminho está liberado.";
+
+        botaoFecharDialogo.onClick.RemoveAllListeners();
+        botaoFecharDialogo.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("PUZZLE2Stones");
-        }
-
-         if (other.CompareTag("Porta1C1"))
-        {
-            SceneManager.LoadScene("PortaCorredor1C1");
-        }
-        if (other.CompareTag("Porta2C1"))
-        {
-            SceneManager.LoadScene("PUZZLE1Stones");
-
-        }
-        if (other.CompareTag("Porta3C1"))
-        {
-            SceneManager.LoadScene("PortaCorredor2C1");
-        }
-
-
-
-
-         if (other.CompareTag("Porta2C3"))
-        {
-            SceneManager.LoadScene("PUZZLE2Circuitos");
-        }
-
-          if (other.CompareTag("Porta1C3"))
-        {
-            SceneManager.LoadScene("PortaCorredor2 3");
-        }
-
-        if (other.CompareTag("Porta3C3"))
-        {
-            SceneManager.LoadScene("PortaCorredor1 3");
-        }
-
-         if (other.CompareTag("Porta1C4"))
-        {
-            SceneManager.LoadScene("PUZZLE1Circuitos");
-        }
-
-        if (other.gameObject.activeInHierarchy && other.CompareTag("PortalCorredor1"))
-        {
-            SceneManager.LoadScene("Corredor");
-        }
-
-        if (other.gameObject.activeInHierarchy && other.CompareTag("PortalCorredor1C1"))
-        {
-            SceneManager.LoadScene("Corredor1");
-        }
-
-        if (other.gameObject.activeInHierarchy && other.CompareTag("PortalCorredor3C1"))
-        {
-            SceneManager.LoadScene("Corredor3");
-        }
-        
-
-        if (other.CompareTag("portal-principal"))
-        {
-            if (ContadorManager.instance.PodeEntrarNoPortal())
-            {
-                SceneManager.LoadScene("Ritual");
-            }
-            else
-            {
-                MostrarAvisoPortao();
-
-            }
-        }
-        if (other.CompareTag("carta"))
-        {
-            if (!DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
-            {
-                MostrarCarta();
-            }
-
-        }
-        if (other.CompareTag("comoda"))
-        {
-
-            if (ComodaPuzzle.comodaDestravada)
-            {
-                if (DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
-                {
-                    ComodaPuzzle.instance.MostrarMensagem("Você já capturou o item.");
-                }
-                else
-                {
-                    StartCoroutine(RevelarItemComFade());
-                    DialogosManager.instance.MarcarDialogoComoConcluido("dialogo_sala_jantar");
-
-                }
-            }
-            else
-            {
-                ComodaPuzzle.instance.MostrarMensagem("A cômoda está trancada. Resolva o enigma primeiro.");
-                Debug.Log("A cômoda está trancada. Resolva o enigma primeiro.");
-            }
-        }
+            canvasDialogo.SetActive(false);
+            Time.timeScale = 1f;
+        });
     }
 }

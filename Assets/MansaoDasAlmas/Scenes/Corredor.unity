@@ -21844,7 +21844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417370630c21aa0479dd880e35354730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jogador: {fileID: 0}
+  jogador: {fileID: 2046902745}
   offset: {x: 0, y: 0, z: -10}
 --- !u!1 &963676544
 GameObject:
@@ -25336,6 +25336,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45f5d98166b801b458db31577d03b896, type: 3}
+--- !u!4 &2046902745 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8196966316482584922, guid: c4b7ccfcfad33d24aa007db5cde6286f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2071727030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2056764858
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class MagiaScript : MonoBehaviour
     public MagiaUIController uiController;
 
     public GameObject[] magias;            // Prefabs/objetos das magias visuais
+    public MagicType[] tiposMagia;         // Tipos das magias, alinhados com magias[]
     public int[] custoManaPorMagia;        // Custos de mana por magia, índice correspondente
     public int currentMagiaIndex = 0;
 
@@ -16,32 +17,34 @@ public class MagiaScript : MonoBehaviour
     {
         controls = new PlayerControls();
     }
+
     private System.Action<InputAction.CallbackContext> shootCallback;
 
     void OnEnable()
-{
-    controls.Enable();
+    {
+        controls.Enable();
 
-    shootCallback = ctx => {
-        Debug.Log("Shoot acionado!");
-        TentarUsarMagia();
-    };
+        shootCallback = ctx => {
+            Debug.Log("Shoot acionado!");
+            TentarUsarMagia();
+        };
 
-    controls.Player.Shoot.performed += shootCallback;
+        controls.Player.Shoot.performed += shootCallback;
 
-    controls.Player.NextSpell.performed += ctx => ProximaMagia();
-    controls.Player.PrevSpell.performed += ctx => MagiaAnterior();
-}
+        controls.Player.NextSpell.performed += ctx => ProximaMagia();
+        controls.Player.PrevSpell.performed += ctx => MagiaAnterior();
+    }
 
-void OnDisable()
-{
-    controls.Player.Shoot.performed -= shootCallback;
+    void OnDisable()
+    {
+        controls.Player.Shoot.performed -= shootCallback;
 
-    controls.Player.NextSpell.performed -= ctx => ProximaMagia();
-    controls.Player.PrevSpell.performed -= ctx => MagiaAnterior();
+        controls.Player.NextSpell.performed -= ctx => ProximaMagia();
+        controls.Player.PrevSpell.performed -= ctx => MagiaAnterior();
 
-    controls.Disable();
-}
+        controls.Disable();
+    }
+
     void Start()
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
@@ -86,40 +89,41 @@ void OnDisable()
             uiController.AtualizarIconeSelecionado(currentMagiaIndex);
     }
 
-   void TentarUsarMagia()
-{
-    if (magias.Length == 0 || playerHealth == null)
-        return;
-
-    int custo = (custoManaPorMagia != null && currentMagiaIndex < custoManaPorMagia.Length)
-                ? custoManaPorMagia[currentMagiaIndex]
-                : 10;
-
-    if (playerHealth.currentMana < custo)
+    void TentarUsarMagia()
     {
-        Debug.Log("Mana insuficiente para usar a magia!");
-        return;
+        if (magias.Length == 0 || playerHealth == null)
+            return;
+
+        int custo = (custoManaPorMagia != null && currentMagiaIndex < custoManaPorMagia.Length)
+                    ? custoManaPorMagia[currentMagiaIndex]
+                    : 10;
+
+        if (playerHealth.currentMana < custo)
+        {
+            Debug.Log("Mana insuficiente para usar a magia!");
+            return;
+        }
+
+        playerHealth.UseMana(custo);
+
+        GameObject magiaObj = Instantiate(magias[currentMagiaIndex], transform.position, transform.rotation);
+
+        Magia magiaScript = magiaObj.GetComponent<Magia>();
+        if (magiaScript != null)
+        {
+            if (tiposMagia != null && currentMagiaIndex < tiposMagia.Length)
+                magiaScript.tipoMagia = tiposMagia[currentMagiaIndex];
+            else
+                magiaScript.tipoMagia = MagicType.Fire; // fallback
+
+            Debug.Log($"Lançando magia tipo: {magiaScript.tipoMagia}");
+
+            float directionX = transform.localScale.x > 0 ? 1f : -1f;
+            magiaScript.direcao = new Vector2(directionX, 0f);
+
+            Vector3 escala = magiaObj.transform.localScale;
+            escala.x = Mathf.Abs(escala.x) * directionX;
+            magiaObj.transform.localScale = escala;
+        }
     }
-
-    playerHealth.UseMana(custo);
-
-    GameObject magiaObj = Instantiate(magias[currentMagiaIndex], transform.position, transform.rotation);
-
-    Magia magiaScript = magiaObj.GetComponent<Magia>();
-    if (magiaScript != null)
-    {
-        MagicType[] tiposMagia = new MagicType[] { MagicType.Darkness, MagicType.Fire, MagicType.Ice };
-        magiaScript.tipoMagia = currentMagiaIndex < tiposMagia.Length ? tiposMagia[currentMagiaIndex] : MagicType.Fire;
-
-        float directionX = transform.localScale.x > 0 ? 1f : -1f;
-        magiaScript.direcao = new Vector2(directionX, 0f);
-        magiaScript.velocidade = magiaScript.velocidade;
-
-        Vector3 escala = magiaObj.transform.localScale;
-        escala.x = Mathf.Abs(escala.x) * directionX;
-        magiaObj.transform.localScale = escala;
-    }
-}
-
-
 }

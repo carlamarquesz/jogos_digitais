@@ -24,15 +24,46 @@ public class BossController : MonoBehaviour
 
     private Coroutine dashCoroutine;
 
+    private Vector2 posicaoInicial = new Vector2(2.61f, -3.33f);
+
+    private bool iniciado = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         lastDashTime = -dashCooldown;
         teleportSystem = GetComponent<TeleportSystem>();
+
+        if (magicManager != null)
+            magicManager.enabled = false;
+
+        StartCoroutine(IniciarBoss());
+    }
+
+    IEnumerator IniciarBoss()
+    {
+        // Move o boss até a posição inicial
+        while (Vector2.Distance(rb.position, posicaoInicial) > 0.05f)
+        {
+            Vector2 novaPos = Vector2.MoveTowards(rb.position, posicaoInicial, walkSpeed * Time.deltaTime);
+            rb.MovePosition(novaPos);
+            yield return null;
+        }
+
+        // Espera 1 segundo parado
+        yield return new WaitForSeconds(1f);
+
+        if (magicManager != null)
+            magicManager.enabled = true;
+
+        iniciado = true;
     }
 
     void Update()
     {
+        if (!iniciado)
+            return;
+
         if (player == null)
         {
             Debug.LogWarning("Player não está atribuído!");
@@ -47,7 +78,6 @@ public class BossController : MonoBehaviour
             dashCoroutine = StartCoroutine(DashAttack());
         }
 
-        // Movimentação lenta em direção ao player, se não estiver dashing
         if (!isDashing)
         {
             Vector2 direction = (player.position - transform.position).normalized;

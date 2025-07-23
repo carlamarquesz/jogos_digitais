@@ -1,3 +1,4 @@
+// Atualizado: MonstroInicial.cs
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class MonstroInicial : MonoBehaviour
     private int falaAtual = 0;
 
     private static bool monstroJaApareceu = false;
+    public static bool dialogoFinalizado = false;
 
     private List<string> falas = new List<string>
     {
@@ -25,22 +27,20 @@ public class MonstroInicial : MonoBehaviour
         "Se quiser entrar no salão principal e encontrar a garota... terá que procurar seus itens por cada canto escuro deste lugar."
     };
 
-    void Start()
+    void Start() { }
+
+    public void IniciarDialogo()
     {
         if (!monstroJaApareceu)
         {
-            StartCoroutine(ApagarMonstro());
             monstroJaApareceu = true;
-        }
-        else
-        {
-            Destroy(gameObject);
+            StartCoroutine(ApagarMonstro());
         }
     }
 
     IEnumerator ApagarMonstro()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(2f);
 
         monstroInstanciado = Instantiate(prefabMonstro, spawnPosition.position, Quaternion.identity);
 
@@ -50,6 +50,7 @@ public class MonstroInicial : MonoBehaviour
         Time.timeScale = 0f;
 
         MostrarFala();
+        botaoContinuar.onClick.RemoveAllListeners();
         botaoContinuar.onClick.AddListener(ProximaFala);
     }
 
@@ -118,5 +119,7 @@ public class MonstroInicial : MonoBehaviour
         {
             Destroy(monstroInstanciado);
         }
+
+        dialogoFinalizado = true;
     }
 }
