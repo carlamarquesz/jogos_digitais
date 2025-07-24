@@ -84,12 +84,12 @@ public class IceMagicRise : MonoBehaviour
 
             Destroy(gameObject);
         }
-        else if (other.CompareTag("Obstacle"))
-        {
-            if (impactEffectPrefab)
-                Instantiate(impactEffectPrefab, transform.position, Quaternion.identity);
+        // else if (other.CompareTag("Obstacle"))
+        // {
+        //     if (impactEffectPrefab)
+        //         Instantiate(impactEffectPrefab, transform.position, Quaternion.identity);
 
-            Destroy(gameObject);
-        }
+        //     Destroy(gameObject);
+        // }
     }
 }

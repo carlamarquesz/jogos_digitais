@@ -144,8 +144,8 @@ MonoBehaviour:
     type: 3}
   shootPoint: {fileID: 5066170897800069510}
   center: {fileID: 5066170897800069510}
-  player: {fileID: 8196966316482584922, guid: c4b7ccfcfad33d24aa007db5cde6286f, type: 3}
-  moveSpeed: 1
+  player: {fileID: 4672711902991380134, guid: 561ca5e01a966db438f93b8fbbce504b, type: 3}
+  moveSpeed: 5
   shootIntervalMin: 1
   shootIntervalMax: 3
   projectileSpeed: 5
@@ -234,10 +234,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bd30d919f313740b8dad02b4a036f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  currentHealth: 5
+  maxHealth: 10
+  currentHealth: 10
   explosionPrefab: {fileID: 1640610561240288236, guid: 117a2af6991a32b4695e8cdd2ac1803e,
     type: 3}
+  duracaoInvencibilidade: 0.3
 --- !u!114 &8064606716498277857
 MonoBehaviour:
   m_ObjectHideFlags: 0

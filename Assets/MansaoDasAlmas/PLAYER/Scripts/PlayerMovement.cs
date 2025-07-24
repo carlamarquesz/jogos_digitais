@@ -40,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     public Image encontrouItemImage;
     public CanvasGroup encontrouCanvasGroup;
-    public MonstroInicial monstroInicialScript; // arraste no Inspector
+    public MonstroInicial monstroInicialScript;
     private int monstrosDerrotados = 0;
-    public int monstrosParaDialogo = 5;  // Quantos monstros derrotar para o diálogo aparecer
+    public int monstrosParaDialogo = 5;
     public GameObject canvasDialogo;
     public TMP_Text dialogoTexto;
     public Button botaoFecharDialogo;
@@ -207,22 +207,31 @@ public class PlayerMovement : MonoBehaviour
 
         if (tag == "carta")
         {
-            if (!DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
+            if (DialogosManager.instance != null && !DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
                 MostrarCarta();
         }
 
         if (tag == "comoda")
         {
-            if (ComodaPuzzle.comodaDestravada)
+            if (ComodaPuzzle.instance == null)
             {
-                if (DialogosManager.instance.FoiConcluido("dialogo_sala_jantar"))
+                Debug.LogWarning("ComodaPuzzle.instance é null!");
+                return;
+            }
+
+            if (ComodaPuzzle.instance.comodaDestravada)
+            {
+                if (DialogoManager.instance != null && DialogoManager.instance.FoiConcluido("dialogo_sala_jantar"))
                 {
                     ComodaPuzzle.instance.MostrarMensagem("Você já capturou o item.");
                 }
                 else
                 {
                     StartCoroutine(RevelarItemComFade());
-                    DialogosManager.instance.MarcarDialogoComoConcluido("dialogo_sala_jantar");
+                    if (DialogosManager.instance != null)
+                    {
+                        DialogosManager.instance.MarcarDialogoComoConcluido("dialogo_sala_jantar");
+                    }
                 }
             }
             else
@@ -308,24 +317,24 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 1f;
         });
     }
- public void MonstroDerrotado()
-{
-    monstrosDerrotados++;
-    Debug.Log($"Monstro derrotado! Total: {monstrosDerrotados}");
 
-    if (monstrosDerrotados >= monstrosParaDialogo)
+    public void MonstroDerrotado()
     {
-        // Chama o diálogo do MonstroInicial
-        if (monstroInicialScript != null)
+        monstrosDerrotados++;
+        Debug.Log($"Monstro derrotado! Total: {monstrosDerrotados}");
+
+        if (monstrosDerrotados >= monstrosParaDialogo)
         {
-            monstroInicialScript.IniciarDialogo();
-        }
-        else
-        {
-            Debug.LogWarning("MonstroInicial não está atribuído no PlayerMovement.");
+            if (monstroInicialScript != null)
+            {
+                monstroInicialScript.IniciarDialogo();
+            }
+            else
+            {
+                Debug.LogWarning("MonstroInicial não está atribuído no PlayerMovement.");
+            }
         }
     }
-}
 
     private void MostrarDialogoPosMonstros()
     {

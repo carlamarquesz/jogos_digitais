@@ -90,40 +90,44 @@ public class MagiaScript : MonoBehaviour
     }
 
     void TentarUsarMagia()
+{
+    if (magias.Length == 0 || playerHealth == null)
+        return;
+
+    int custo = (custoManaPorMagia != null && currentMagiaIndex < custoManaPorMagia.Length)
+                ? custoManaPorMagia[currentMagiaIndex]
+                : 10;
+
+    if (playerHealth.currentMana < custo)
     {
-        if (magias.Length == 0 || playerHealth == null)
-            return;
-
-        int custo = (custoManaPorMagia != null && currentMagiaIndex < custoManaPorMagia.Length)
-                    ? custoManaPorMagia[currentMagiaIndex]
-                    : 10;
-
-        if (playerHealth.currentMana < custo)
-        {
-            Debug.Log("Mana insuficiente para usar a magia!");
-            return;
-        }
-
-        playerHealth.UseMana(custo);
-
-        GameObject magiaObj = Instantiate(magias[currentMagiaIndex], transform.position, transform.rotation);
-
-        Magia magiaScript = magiaObj.GetComponent<Magia>();
-        if (magiaScript != null)
-        {
-            if (tiposMagia != null && currentMagiaIndex < tiposMagia.Length)
-                magiaScript.tipoMagia = tiposMagia[currentMagiaIndex];
-            else
-                magiaScript.tipoMagia = MagicType.Fire; // fallback
-
-            Debug.Log($"Lançando magia tipo: {magiaScript.tipoMagia}");
-
-            float directionX = transform.localScale.x > 0 ? 1f : -1f;
-            magiaScript.direcao = new Vector2(directionX, 0f);
-
-            Vector3 escala = magiaObj.transform.localScale;
-            escala.x = Mathf.Abs(escala.x) * directionX;
-            magiaObj.transform.localScale = escala;
-        }
+        Debug.Log("Mana insuficiente para usar a magia!");
+        return;
     }
+
+    playerHealth.UseMana(custo);
+
+    GameObject magiaObj = Instantiate(magias[currentMagiaIndex], transform.position, transform.rotation);
+
+    Magia magiaScript = magiaObj.GetComponent<Magia>();
+    if (magiaScript != null)
+    {
+        if (tiposMagia != null && currentMagiaIndex < tiposMagia.Length)
+            magiaScript.tipoMagia = tiposMagia[currentMagiaIndex];
+        else
+            magiaScript.tipoMagia = MagicType.Fire;
+
+        magiaScript.tipoDefinidoExterno = true; // evita sobrescrever no Start()
+
+        Debug.Log($"Lançando magia tipo: {magiaScript.tipoMagia}");
+
+        float directionX = transform.localScale.x > 0 ? 1f : -1f;
+        magiaScript.direcao = new Vector2(directionX, 0f);
+
+        Vector3 escala = magiaObj.transform.localScale;
+        escala.x = Mathf.Abs(escala.x) * directionX;
+        magiaObj.transform.localScale = escala;
+    }
+}
+
+
 }

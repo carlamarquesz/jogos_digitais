@@ -5,17 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class DialogoManager : MonoBehaviour
 {
-    public GameObject canvasDialogo;  
+    public static DialogoManager instance;  // Instância acessível de fora
+
+    public GameObject canvasDialogo;
     public Button botaoContinuar;
 
-    private static bool dialogoMostrado = false; 
+    private static bool dialogoMostrado = false;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
         if (!dialogoMostrado && SceneManager.GetActiveScene().name == "Game")
         {
             StartCoroutine(MostrarDialogo());
-            dialogoMostrado = true;  
+            dialogoMostrado = true;
         }
     }
 
@@ -32,5 +46,11 @@ public class DialogoManager : MonoBehaviour
     {
         canvasDialogo.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    // ✅ Este método resolve o erro CS1061
+    public bool FoiConcluido(string id)
+    {
+        return dialogoMostrado;
     }
 }

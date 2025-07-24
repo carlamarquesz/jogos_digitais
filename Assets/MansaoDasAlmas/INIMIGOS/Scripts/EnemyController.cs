@@ -19,6 +19,10 @@ public class EnemyController : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    // Valores base para poder restaurar após o buff
+    private float baseMoveSpeed;
+    private float baseProjectileSpeed;
+
     void Start()
     {
         enemySlow = GetComponent<EnemySlow>();
@@ -26,24 +30,39 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
         rb.freezeRotation = true;
+
+        baseMoveSpeed = moveSpeed;
+        baseProjectileSpeed = projectileSpeed;
     }
 
     void Update()
     {
+        // Verifica se está no horário noturno e aplica o buff
+        if (GameClock.Instance != null && GameClock.Instance.IsNightTime)
+        {
+            moveSpeed = baseMoveSpeed * 2f;
+            projectileSpeed = baseProjectileSpeed * 2f;
+        }
+        else
+        {
+            moveSpeed = baseMoveSpeed;
+            projectileSpeed = baseProjectileSpeed;
+        }
+
         if (player != null)
         {
             Vector2 dir = (player.position - transform.position).normalized;
 
             float velocidadeAtual = (enemySlow != null) ? enemySlow.GetVelocidadeAtual() : moveSpeed;
 
-            rb.linearVelocity = dir * velocidadeAtual;  // Usar velocity
+            rb.linearVelocity = dir * velocidadeAtual;  // Corrigido para velocity
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             center.rotation = Quaternion.Euler(0f, 0f, angle);
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;  // Usar velocity
+            rb.linearVelocity = Vector2.zero;
         }
 
         shootTimer -= Time.deltaTime;
@@ -62,7 +81,7 @@ public class EnemyController : MonoBehaviour
             Rigidbody2D rbProj = projectile.GetComponent<Rigidbody2D>();
             if (rbProj != null)
             {
-                rbProj.linearVelocity = shootPoint.right * projectileSpeed;  // Usar velocity
+                rbProj.linearVelocity = shootPoint.right * projectileSpeed;  // Corrigido para velocity
             }
         }
     }
@@ -76,7 +95,8 @@ public class EnemyController : MonoBehaviour
             PlayerHealth playerHealth = collision.collider.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(playerHealth.currentHealth);
+                int dano = 1; // dano ao jogador na colisão
+                playerHealth.TakeDamage(dano);
             }
         }
     }
